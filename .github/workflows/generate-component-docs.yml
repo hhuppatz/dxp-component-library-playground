@@ -25,8 +25,14 @@ jobs:
 
       - name: Detect changed components
         id: changed
+        env:
+          BEFORE: ${{ github.event.before }}
+          AFTER: ${{ github.sha }}
         run: |
-          git diff --name-only HEAD~1 HEAD -- 'dxp/component-service/' \
+          # On push, diff the full range of commits in the push.
+          # On workflow_dispatch, github.event.before is empty so fall back to HEAD~1.
+          FROM="${BEFORE:-HEAD~1}"
+          git diff --name-only "${FROM}" "${AFTER}" -- 'dxp/component-service/' \
             | grep -oP 'dxp/component-service/[^/]+' \
             | sort -u > /tmp/changed_dirs.txt
           echo "Changed component directories:"
