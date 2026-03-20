@@ -54,8 +54,10 @@ jobs:
             was_changed=false
             grep -qF "$component_dir" /tmp/changed_dirs.txt && was_changed=true
 
-            spec_file="${component_dir}functional-spec.md"
-            guide_file="${component_dir}user-guide.md"
+            component=$(basename "$component_dir")
+            [ -d "docs/${component}" ] || mkdir -p "docs/${component}"
+            spec_file="docs/${component}/functional-spec.md"
+            guide_file="docs/${component}/user-guide.md"
             missing_spec=false
             missing_guide=false
             [ ! -f "$spec_file" ] && missing_spec=true
@@ -79,7 +81,7 @@ jobs:
               spec_prompt="${spec_prompt}"$'\n'"- Custom field types (SquizImage, SquizLink, FormattedText) and what they mean"
               spec_prompt="${spec_prompt}"$'\n'"- Any conditional logic (fields that appear or become required based on other field values)"
               spec_prompt="${spec_prompt}"$'\n'"- Visual/functional variations or named previews"
-              spec_prompt="${spec_prompt}"$'\n\n'"Write in Markdown. Be thorough but concise."
+              spec_prompt="${spec_prompt}"$'\n\n'"Write in Markdown. Keep the response to 2-3 short paragraphs — be concise and to the point."
               spec_prompt="${spec_prompt}"$'\n\n'"manifest.json:"$'\n'"${manifest_content}"
               spec=$(call_ai "$spec_prompt")
               printf '%s\n' "$spec" > "$spec_file"
@@ -95,7 +97,7 @@ jobs:
               guide_prompt="${guide_prompt}"$'\n'"- Which fields are required vs optional"
               guide_prompt="${guide_prompt}"$'\n'"- Any conditional fields (e.g. fields that only appear when a specific option is chosen)"
               guide_prompt="${guide_prompt}"$'\n'"- Tips and best practices for getting the best results"
-              guide_prompt="${guide_prompt}"$'\n\n'"Avoid technical jargon. Write in Markdown with clear headings and numbered steps where appropriate."
+              guide_prompt="${guide_prompt}"$'\n\n'"Avoid technical jargon. Write in Markdown. Keep the response to 2-3 short paragraphs — be concise and practical."
               guide_prompt="${guide_prompt}"$'\n\n'"manifest.json:"$'\n'"${manifest_content}"
               guide=$(call_ai "$guide_prompt")
               printf '%s\n' "$guide" > "$guide_file"
@@ -106,8 +108,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add dxp/component-service/*/functional-spec.md \
-                  dxp/component-service/*/user-guide.md 2>/dev/null || true
+          git add docs/ 2>/dev/null || true
           if git diff --cached --quiet; then
             echo "No documentation changes to commit."
           else
