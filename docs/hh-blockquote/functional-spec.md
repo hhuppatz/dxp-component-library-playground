@@ -1,25 +1,24 @@
-```markdown
-# Functional Specification: Block Quote Component
+# Block Quote Component Functional Specification
 
 ## Overview
-The **Block Quote** web component displays a stylized quote with an optional title and author name. It is designed for showcasing testimonials, impactful statements, or featured quotes. Use this component to highlight short, standalone text in a visually distinct format. The Block Quote supports inline editing and translations, making it suitable for multilingual websites.
+The **Block Quote** component is designed to display a highlighted quote along with the author's name. It provides an optional title to contextualize the quote. This component is ideal for prominently featuring testimonials, quotes, or key statements within a web page. It is customizable and translatable, ensuring seamless integration with various design requirements and content strategies.
 
-## Available Properties
-| Property         | Type           | Title              | Description                           | Default         | Required |
-|-------------------|----------------|--------------------|---------------------------------------|-----------------|----------|
-| `title`          | string         | Title              | Text displayed above the quote.       | "Section title" | No       |
-| `quote`          | FormattedText  | Quote              | The main quote text.                  | N/A             | Yes      |
-| `author`         | string         | Author             | Name of the quote’s author.           | "Author"        | No       |
-| `favouriteCoffee`| string         | Favourite Coffee   | Placeholder for the user's coffee preference (non-functional). | "Latte" | No |
+## Component Properties
+The Block Quote component supports the following properties:
 
-### Explanation of Field Types
-- **FormattedText**: This field allows rich text formatting, such as bold, italics, and links, designed for the main quote text.
-- **SquizImage**: Not applicable in this component.
-- **SquizLink**: Not applicable in this component.
+| **Field**           | **Type**           | **Title**            | **Description**                                            | **Default Value** | **Required** |
+|---------------------|--------------------|----------------------|------------------------------------------------------------|-------------------|--------------|
+| `title`             | `string`          | Title                | The title displayed above the quote.                       | Section title     | No           |
+| `quote`             | `FormattedText`   | Quote                | The text of the quote.                                      | None              | Yes          |
+| `author`            | `string`          | Author               | The name of the quote's author.                            | Author            | No           |
+| `favouriteCoffee`   | `string`          | Favourite Coffee     | (Optional field) User’s favourite coffee.                  | Latte             | No           |
 
-## Conditional Logic
-- The `quote` field is always required; it determines the component's core functionality. Other fields are optional and appear even if left blank.
+### Custom Field Types
+- **FormattedText**: This input type allows rich text formatting (e.g., bold, italics, links), making it ideal for stylized or emphasized quotes.
+- **SquizImage** and **SquizLink** (not present in this configuration): These are specialized field types in Squiz Matrix for handling media assets and hyperlinks. They are not used in this component.
 
-## Variations and Previews
-The Block Quote component includes a **default preview** template, showcased with sample data (stored in `example.data.json`). This preview visually represents the title, quote, and author fields with their default values or custom user inputs. This helps content editors understand how their content will appear on the final webpage.
-```
+### Conditional Logic
+The `quote` field is mandatory, and the component will not render without valid content. No additional conditional logic exists for other fields.
+
+## Previews and Visual Variations
+The component provides a default named preview, which renders the Block Quote within a pre-configured HTML wrapper (`preview.html`) using example content from `example.data.json`. This allows developers and designers to visualize the component's appearance and functionality during the design and development process.
