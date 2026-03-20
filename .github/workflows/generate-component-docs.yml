@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - 'dxp/component-service/**'
+  workflow_dispatch:
 
 # NOTE: This workflow also generates documentation for any component that is
 # missing a functional-spec.md or user-guide.md, regardless of whether that
