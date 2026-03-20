@@ -1,9 +1,9 @@
 {
   "$schema": "http://localhost:3000/schemas/v1.json",
   "name": "hh-card",
-  "namespace": "layouts-card",
+  "namespace": "hh-components",
   "description": "Individual Card",
-  "displayName": "Card",
+  "displayName": "HH - Card",
   "version": "1.0.0",
   "type": "edge",
   "mainFunction": "main",

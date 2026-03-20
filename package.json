@@ -16,6 +16,7 @@
     "prettier:fix": "npx prettier . --write",
     "deploy": "npm run deploy:component --",
     "deploy:component": "FEATURE_EDGE_COMPONENTS=true dxp-next cmp deploy ./dxp/component-service/$npm_config_name",
+    "deploy:all": "for dir in dxp/component-service/*/; do FEATURE_EDGE_COMPONENTS=true dxp-next cmp deploy \"$dir\" || echo \"Skipping $dir (deploy failed)\"; done",
     "vermgmt": "vermgmt",
     "lint:js": "eslint dxp/component-service src/scripts",
     "lint:js:fix": "eslint dxp/component-service src/scripts --fix",

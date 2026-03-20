@@ -1,9 +1,9 @@
 {
   "$schema": "http://localhost:3000/schemas/v1.json",
   "name": "hh-accordion",
-  "namespace": "edge-dxp-comp-lib",
+  "namespace": "hh-components",
   "description": "Displays a list of headings with hidden related content that users can reveal by clicking.",
-  "displayName": "Accordion",
+  "displayName": "HH - Accordion",
   "version": "1.0.0",
   "type": "edge",
   "mainFunction": "main",

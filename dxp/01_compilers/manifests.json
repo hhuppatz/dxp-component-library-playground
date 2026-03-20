@@ -1,6 +1,6 @@
 [
-  "layouts-card/hh-card/1.0.0",
-  "edge-dxp-comp-lib/hh-blockquote/2.1.0",
-  "edge-dxp-comp-lib/hh-banner/2.1.0",
-  "edge-dxp-comp-lib/hh-accordion/2.1.0"
+  "hh-components/hh-card/1.0.0",
+  "hh-components/hh-blockquote/2.1.0",
+  "hh-components/hh-banner/2.1.0",
+  "hh-components/hh-accordion/2.1.0"
 ]

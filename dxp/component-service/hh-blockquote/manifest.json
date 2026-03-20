@@ -1,9 +1,9 @@
 {
   "$schema": "http://localhost:3000/schemas/v1.json",
   "name": "hh-blockquote",
-  "namespace": "edge-dxp-comp-lib",
+  "namespace": "hh-components",
   "description": "Displays a quote with the author's name.",
-  "displayName": "Block Quote",
+  "displayName": "HH - Block Quote",
   "version": "1.0.0",
   "type": "edge",
   "mainFunction": "main",

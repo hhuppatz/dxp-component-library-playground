@@ -1,9 +1,9 @@
 {
   "$schema": "http://localhost:3000/schemas/v1.json",
   "name": "hh-banner",
-  "namespace": "edge-dxp-comp-lib",
+  "namespace": "hh-components",
   "description": "Displays a background media element such as a video, image, or a flat background color.",
-  "displayName": "Banner Component",
+  "displayName": "HH - Banner",
   "version": "1.0.0",
   "type": "edge",
   "mainFunction": "main",
