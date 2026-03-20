@@ -1,32 +1,37 @@
-# User Guide: Editing a Banner Component in Squiz Matrix
+# User Guide: HH - Banner Component
 
-The **Banner Component** adds a visually striking section to your page with a customizable background and a main heading. The background can display a video, an image, or a flat color. Use it to highlight key messages, promotions, or to create an eye-catching page header. Here's how to edit it effectively:
+The **HH - Banner** is a flexible web component used to display a visually appealing background media element, like an image, video, or a solid color. It’s perfect for adding emphasis to a section of your webpage, often as a header or hero section. You can pair this background with a brief heading to convey a clear and bold message to your audience.
 
 ---
 
-## Step-by-Step Instructions
+## Step-by-Step Instructions for Editing the Component
 
-1. **Select a Media Type (Required)**  
-   Choose what you want in the background:  
-   - **Video**: A moving visual for dynamic impact.  
-   - **Image**: A static background using an image (e.g., a photo or graphic).  
-   - **None**: A flat background color, ideal for a simple, clean look.
+### Required Fields
+1. **Media Type**: Choose the type of background you want to show:
+   - **Video**: Great for dynamic, engaging visuals. If you choose this, you’ll need to add a video source.
+   - **Image**: Perfect for showcasing a specific photo or graphic. If you choose this, you’ll need to select an image.
+   - **None**: Displays a flat background color by default.
+   
+   _Tip: Use a media type that matches the mood or branding of your webpage._
 
-2. **Add a Heading (Required)**  
-   Enter the text for your banner's main heading. This is the primary message your audience will see, so keep it clear and concise.
+2. **Heading**: Enter the text you want displayed in the banner as the main heading. Keep it short and impactful; aim for 5-10 words to grab attention at a glance.
 
-3. **Provide Background Content (Conditional)**  
-   - If you choose **Video**: Link an internal video from the media library under the *Internal Video Source* field.  
-   - If you choose **Image**: Upload or select an image from the media library in the *Image* field.  
+### Conditional Fields
+- If you select **Video** as the Media Type, you’ll need to provide a link to the internal video source.  
+  **Video Source**: Choose a video from your library that suits your banner message. Ensure the video resolution is suitable for large displays.
 
-   *Note*: If you choose "None" as the media type, these fields won’t appear.
+- If you select **Image** as the Media Type, you’ll need to upload or select an image.  
+  **Image**: Select a high-quality image that fits the banner dimensions. Avoid small or pixelated images.
+
+### Optional Fields
+- **Media Type: None** doesn’t require additional settings, but make sure the solid background aligns with your branding.
 
 ---
 
 ## Tips and Best Practices
+- Use bright, high-contrast media or images with your heading for maximum readability.
+- Test your selected media on both desktop and mobile screens to ensure it scales well.
+- For videos, keep the file size manageable to avoid slowing page load speeds.
+- Stick to concise headings that resonate with your audience.
 
-- **Use high-quality media**: Ensure your images and videos are high resolution for a professional look. Low-quality visuals can diminish the impact of your banner.
-- **Keep the heading short and impactful**: It should immediately capture the user's attention and convey your message.
-- **Stay on-brand**: Choose media and text that align with your organization's branding and message for a consistent user experience.
-
-And that’s it! With these simple steps, you’ll create an engaging and visually appealing banner for your website.
+With these steps and tips, you'll quickly create banners that look professional and help deliver your message effectively!

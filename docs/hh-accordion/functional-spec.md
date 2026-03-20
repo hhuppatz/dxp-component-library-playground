@@ -1,47 +1,43 @@
-# Functional Specification: Accordion Component (`hh-accordion`)
+```markdown
+# Functional Specification: HH - Accordion
 
-## Overview
-The Accordion component displays a list of headings with hidden, related content that users can reveal by clicking. It is ideal for compactly presenting structured information, such as FAQs or content organized into sections. This component ensures an accessible and user-friendly interface for information expansion and collapse.
+## Component Overview
+The **HH - Accordion** component displays a list of collapsible headings with hidden content that users can reveal by clicking. Use this component to present information in a compact, organized manner, such as FAQs, features, or categorized content. Its interaction-driven format improves the user experience by reducing visual clutter and focusing attention on specific sections.
 
-## Component Properties
-Below are the configurable properties for the Accordion component:
+## Available Properties/Fields
 
-- **Title**
-  - **Type**: `string`
-  - **Description**: The title displayed above the accordion.
-  - **Default Value**: "Section title"
-  - **Required**: No
-  - **Additional Information**: This field supports inline editing and is translatable.
+### `title`
+- **Type**: `string`
+- **Description**: The section title displayed above the accordion.
+- **Default Value**: "Section title"
+- **Required**: No
+- **Notes**: Supports inline editing and text translation.
 
-- **Accordion Items**
-  - **Type**: `array`
-  - **Description**: A list of accordion items, each consisting of a heading and expandable content.
-  - **Default Value**: None
-  - **Required**: Yes (at least one item is needed).
-  - **Minimum/Maximum Items**: 1 to 20 items
+### `accordion`
+- **Type**: `array`
+- **Description**: Defines the content for multiple accordion items, each containing a heading and associated content.
+- **Default Value**: None
+- **Required**: Yes (must contain at least one item)
   - **Item Properties**:
-    - **Heading**
+    - **`heading`**
       - **Type**: `string`
-      - **Description**: The title of the individual accordion item.
+      - **Description**: The title for each accordion item.
       - **Default Value**: "Heading content"
       - **Required**: Yes
-      - **Additional Information**: Supports inline editing and is translatable.
-    - **Content**
+      - **Notes**: Supports inline editing and text translation.
+    - **`content`**
       - **Type**: `FormattedText`
-      - **Description**: Content inside the accordion panel, visible when expanded.
-      - **Default Value**: None
+      - **Description**: Text displayed inside the accordion panel when expanded.
       - **Required**: Yes
-      - **Additional Information**: Supports rich text formatting and inline editing.
+      - **Notes**: Allows rich text formatting and supports inline editing.
 
 ## Custom Field Types
-- **`FormattedText`**: Allows rich text formatting (e.g., bold, italics, links) for dynamic and visually appealing content.
-- **Translatable Support**: Fields can be translated for multilingual sites, ensuring adaptability for global audiences.
+- **FormattedText**: A field supporting rich text content (e.g., bold, links, lists), allowing for visually-rich and formatted output.
+- **SquizImage** and **SquizLink**: Not used in this component.
 
-## Behavior & Variations
-### Conditional Logic
-- The `accordion` property is mandatory, with at least one accordion item required. Both `heading` and `content` fields are always necessary within each accordion item.
+## Conditional Logic
+The `accordion` field is required and must have at least one item. Each item in the array must include valid `heading` and `content`. No additional conditional logic is applied.
 
-### Named Previews
-- **Default Preview**: Displays an example accordion with sample heading and expandable content defined in an associated `example.data.json` file and rendered within `preview.html`.
-
-This component ensures ease of use, high configurability, and functional flexibility for building intuitive, collapsible content displays.
+## Visual/Functional Variations
+The component includes a single named preview (`default`) for visual and functional testing. This preview uses a predefined `example.data.json` file as input and is wrapped in a custom `preview.html` template for consistent display in testing environments.
+```

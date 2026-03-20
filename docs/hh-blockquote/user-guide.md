@@ -1,36 +1,32 @@
-# User Guide: Block Quote Component
+# User Guide: HH - Block Quote Component
 
-The **Block Quote** component is designed to showcase a highlighted quote on your page. It allows you to add a quote, the author’s name, and a title above the quote for context. This is perfect for emphasizing important statements, testimonials, or inspiring messages. The component displays with a clean, professional design to draw attention without overpowering the surrounding content.
+The **HH - Block Quote** component is a design element that highlights a quote alongside the author's name. It is often used to draw attention to impactful statements or key testimonials on a webpage. When displayed on the page, it includes three main elements: a **quote** (main text), the **author's name**, and optionally, a **title** above the quote. The component is both stylish and functional, helping break up content visually while emphasizing important messages.
 
-## How to Edit the Block Quote
+## Step-by-Step Instructions
 
-Follow these steps to customize your Block Quote:
+### 1. Title *(Optional)*  
+This text appears above the quote, often as a headline summarizing the context of the quote or section. If you'd like to add a title:  
+- In the **Title** field, enter a short description or header (e.g., `"Customer Feedback"` or `"Words of Wisdom"`).  
+- You can skip this if you do not want a title to appear.
 
-1. **Title (Optional)**  
-   - This is the heading that appears above the quote.  
-   - Example: "What Our Customers Are Saying".  
-   - If you don’t need a title, you can leave this field blank.
+### 2. Quote *(Required)*  
+The **quote** is the most critical field and must be filled in:  
+- In the **Quote** field, write the statement or message you’d like to highlight (e.g., `"The best service I've ever experienced!"`).  
+- Keep the quote concise and impactful for best visual results.
 
-2. **Quote (Required)**  
-   - Enter the text of the quote in this field. It is the main, eye-catching content of the Block Quote.  
-   - Example: "The service was outstanding and exceeded our expectations!"  
-   - This is a required field, so it must be filled out for the Block Quote to display.
+### 3. Author *(Optional)*  
+The author's name adds credibility to the quote:  
+- Fill in the **Author** field with the name of the person or source of the quote (e.g., `"Jane Doe"`).  
+- If you don’t want an author to appear, simply leave this field blank.
 
-3. **Author (Optional)**  
-   - Add the name of the person being quoted. This will appear below the quote to attribute it properly.  
-   - Example: "Jane Doe, CEO of Company X".  
-   - If the quote doesn’t need attribution, you can leave this blank.
+### 4. Favourite Coffee *(Optional)*  
+This field is just a fun placeholder and **does not appear** on the webpage. You can leave it as-is, or enter your favorite coffee for reference, but it has no impact on the design or functionality.
 
-4. **Favourite Coffee (Optional)**  
-   - This is an additional fun or unexpected field where you can highlight the author’s favorite coffee.  
-   - Example: "Latte".  
-   - Note: Use this field creatively, or ignore it if it's not relevant.
+---
 
-## Tips & Best Practices
+## Tips and Best Practices  
+- **Prioritize readability.** Keep quotes brief and avoid lengthy paragraphs. Short, impactful text is easier to read and grabs attention.  
+- **Use appropriate attribution.** Always credit authors properly if using real names. If anonymous, consider creative alternatives like `"A satisfied customer"`.  
+- **Test visibility.** Preview your edits to ensure the quote doesn’t feel out of place within its context or layout.
 
-- Keep the quote concise and impactful to maintain the audience's attention.  
-- Always double-check spelling and grammar, especially for the author’s name, as it reflects credibility.  
-- Consider leaving non-essential fields, like "Favourite Coffee," empty unless they add meaningful context or are part of your creative branding.  
-- Use the optional Title to guide your audience, especially if the quote is part of a larger section. 
-
-By following these steps and tips, your Block Quote will stand out and enhance your webpage effectively!
+By following these steps, you’ll make the most of the **HH - Block Quote** component and create engaging, visually compelling webpage content!
