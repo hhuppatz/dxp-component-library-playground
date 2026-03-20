@@ -5,7 +5,7 @@ import { xssSafeContent } from '../../utils/xss';
 
 // This module takes an object with "quote" and "author" properties as input.
 export default {
-  async main({ title, quote, author }) {
+  async main({ title, quote, author, favouriteCoffee }) {
     return html`
       <section class="blockquote-section">
         <!-- Conditionally render title of the section -->
@@ -21,6 +21,10 @@ export default {
 
             ${author
               ? `<cite data-sq-field="author" class="blockquote__author">${xssSafeContent(author)}</cite>`
+              : ''}
+              
+            ${favouriteCoffee
+              ? `<p data-sq-field="favouriteCoffee" class="blockquote__favouriteCoffee">${xssSafeContent(favouriteCoffee)}</p>`
               : ''}
           </div>
         </blockquote>

@@ -51,6 +51,16 @@
             "ui:metadata": {
               "inlineEditable": true
             }
+          },
+          "favouriteCoffee": {
+            "type": "string",
+            "title": "Favourite Coffee",
+            "description": "The user's favourite coffee.",
+            "default": "Latte",
+            "translatable": true,
+            "ui:metadata": {
+              "inlineEditable": true
+            }
           }
         }
       },
