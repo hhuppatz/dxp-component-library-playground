@@ -1,14 +1,14 @@
 {
   "$schema": "http://localhost:3000/schemas/v1.json",
-  "name": "key-statistics",
+  "name": "hh-accordion",
   "namespace": "edge-dxp-comp-lib",
-  "description": "Displays numeric statistics in up to five cards.",
-  "displayName": "Key Statistics",
+  "description": "Displays a list of headings with hidden related content that users can reveal by clicking.",
+  "displayName": "Accordion",
   "version": "2.1.0",
   "type": "edge",
   "mainFunction": "main",
   "icon": {
-    "id": "insert_chart",
+    "id": "toc",
     "color": {
       "type": "enum",
       "value": "gray"
@@ -20,56 +20,57 @@
       "entry": "main.js",
       "input": {
         "type": "object",
-        "title": "Key Statistics Content",
-        "required": ["stats"],
         "properties": {
           "title": {
             "type": "string",
             "title": "Title",
-            "description": "The title displayed above the key statistics.",
+            "description": "The title to be displayed above the component.",
             "default": "Section title",
             "translatable": true,
             "ui:metadata": {
               "inlineEditable": true
             }
           },
-          "stats": {
+          "accordion": {
+            "title": "Accordion Items",
+            "description": "A list of expandable accordion items to be displayed.",
             "type": "array",
-            "title": "Statistics",
-            "description": "A list of up to five key statistics displayed in cards.",
-            "minItems": 3,
-            "maxItems": 5,
+            "minItems": 1,
+            "maxItems": 20,
             "items": {
               "type": "object",
-              "title": "Statistic",
+              "title": "Accordion Item",
+              "required": [
+                "heading",
+                "content"
+              ],
               "properties": {
-                "value": {
+                "heading": {
                   "type": "string",
-                  "title": "Value",
-                  "description": "The number representing the statistic.",
-                  "minLength": 1,
-                  "maxLength": 5,
-                  "default": "01",
+                  "title": "Heading",
+                  "description": "The heading of the accordion item.",
+                  "default": "Heading content",
                   "translatable": true,
                   "ui:metadata": {
                     "inlineEditable": true
                   }
                 },
-                "text": {
-                  "type": "string",
-                  "title": "Supporting Text",
-                  "description": "The text providing additional context for the statistic.",
-                  "default": "Supporting text",
+                "content": {
+                  "type": "FormattedText",
+                  "title": "Content",
+                  "description": "The text that appears inside the accordion panel, hidden until the item is expanded.",
                   "translatable": true,
                   "ui:metadata": {
                     "inlineEditable": true
                   }
                 }
-              },
-              "required": ["value"]
+              }
             }
           }
-        }
+        },
+        "required": [
+          "accordion"
+        ]
       },
       "output": {
         "responseType": "html"

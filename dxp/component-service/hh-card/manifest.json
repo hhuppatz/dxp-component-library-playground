@@ -1,6 +1,6 @@
 {
   "$schema": "http://localhost:3000/schemas/v1.json",
-  "name": "card",
+  "name": "hh-card",
   "namespace": "layouts-card",
   "description": "Individual Card",
   "displayName": "Card",
@@ -68,7 +68,9 @@
             }
           }
         },
-        "required": ["heading"]
+        "required": [
+          "heading"
+        ]
       },
       "output": {
         "responseType": "html"

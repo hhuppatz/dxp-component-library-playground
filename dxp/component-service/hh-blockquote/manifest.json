@@ -1,14 +1,14 @@
 {
   "$schema": "http://localhost:3000/schemas/v1.json",
-  "name": "dynamic-header",
+  "name": "hh-blockquote",
   "namespace": "edge-dxp-comp-lib",
-  "description": "Displays a heading and supporting text with a user-defined heading level.",
-  "displayName": "Dynamic Header",
+  "description": "Displays a quote with the author's name.",
+  "displayName": "Block Quote",
   "version": "2.1.0",
   "type": "edge",
   "mainFunction": "main",
   "icon": {
-    "id": "title",
+    "id": "announcement",
     "color": {
       "type": "enum",
       "value": "gray"
@@ -20,33 +20,45 @@
       "entry": "main.js",
       "input": {
         "type": "object",
-        "title": "Dynamic Header Content",
-        "required": ["title"],
+        "title": "Block Quote content",
+        "required": [
+          "quote"
+        ],
         "properties": {
           "title": {
             "type": "string",
             "title": "Title",
-            "description": "The heading text to display.",
+            "description": "The title displayed above the quote.",
             "default": "Section title",
             "translatable": true,
             "ui:metadata": {
               "inlineEditable": true
             }
           },
-          "titleLevel": {
-            "type": "string",
-            "title": "Title Level",
-            "description": "Select the heading level from h1 to h6.",
-            "enum": ["h1", "h2", "h3", "h4", "h5", "h6"],
-            "default": "h2",
+          "quote": {
+            "type": "FormattedText",
+            "title": "Quote",
+            "description": "The text of the quote.",
+            "translatable": true,
             "ui:metadata": {
-              "quickOption": true
+              "inlineEditable": true
             }
           },
-          "content": {
-            "type": "FormattedText",
-            "title": "Content",
-            "description": "The text displayed below the heading.",
+          "author": {
+            "type": "string",
+            "title": "Author",
+            "description": "The name of the quote's author.",
+            "default": "Author",
+            "translatable": true,
+            "ui:metadata": {
+              "inlineEditable": true
+            }
+          },
+          "favouriteCoffee": {
+            "type": "string",
+            "title": "Favourite Coffee",
+            "description": "The user's favourite coffee.",
+            "default": "Latte",
             "translatable": true,
             "ui:metadata": {
               "inlineEditable": true
@@ -60,7 +72,7 @@
     }
   ],
   "staticFiles": {
-    "locationRoot": "./"
+    "locationRoot": ""
   },
   "previews": {
     "default": {

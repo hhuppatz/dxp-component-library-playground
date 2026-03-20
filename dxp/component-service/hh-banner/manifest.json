@@ -1,6 +1,6 @@
 {
   "$schema": "http://localhost:3000/schemas/v1.json",
-  "name": "banner",
+  "name": "hh-banner",
   "namespace": "edge-dxp-comp-lib",
   "description": "Displays a background media element such as a video, image, or a flat background color.",
   "displayName": "Banner Component",
@@ -25,7 +25,11 @@
             "type": "string",
             "title": "Media Type",
             "description": "Select the type of background media: video, image, or a flat background color if none is selected.",
-            "enum": ["video", "image", "none"],
+            "enum": [
+              "video",
+              "image",
+              "none"
+            ],
             "default": "none",
             "ui:metadata": {
               "quickOption": true
@@ -42,11 +46,16 @@
             }
           }
         },
-        "required": ["mediaType", "heading"],
+        "required": [
+          "mediaType",
+          "heading"
+        ],
         "allOf": [
           {
             "if": {
-              "required": ["mediaType"],
+              "required": [
+                "mediaType"
+              ],
               "properties": {
                 "mediaType": {
                   "const": "video"
@@ -64,12 +73,16 @@
                   }
                 }
               },
-              "required": ["videoSource"]
+              "required": [
+                "videoSource"
+              ]
             }
           },
           {
             "if": {
-              "required": ["mediaType"],
+              "required": [
+                "mediaType"
+              ],
               "properties": {
                 "mediaType": {
                   "const": "image"
@@ -87,7 +100,9 @@
                   }
                 }
               },
-              "required": ["image"]
+              "required": [
+                "image"
+              ]
             }
           }
         ]
