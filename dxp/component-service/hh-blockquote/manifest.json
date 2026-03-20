@@ -4,7 +4,7 @@
   "namespace": "edge-dxp-comp-lib",
   "description": "Displays a quote with the author's name.",
   "displayName": "Block Quote",
-  "version": "2.1.0",
+  "version": "1.0.0",
   "type": "edge",
   "mainFunction": "main",
   "icon": {

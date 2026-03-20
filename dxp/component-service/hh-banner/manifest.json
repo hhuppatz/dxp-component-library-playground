@@ -4,7 +4,7 @@
   "namespace": "edge-dxp-comp-lib",
   "description": "Displays a background media element such as a video, image, or a flat background color.",
   "displayName": "Banner Component",
-  "version": "2.1.0",
+  "version": "1.0.0",
   "type": "edge",
   "mainFunction": "main",
   "icon": {
