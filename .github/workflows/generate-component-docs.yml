@@ -57,10 +57,9 @@ jobs:
             [ -f "$manifest" ] || continue
 
             component_name=$(jq -r '.displayName // .name' "$manifest")
-            was_changed=false
-            grep -qF "$component_dir" /tmp/changed_dirs.txt && was_changed=true
-
             component=$(basename "$component_dir")
+            was_changed=false
+            grep -qF "dxp/component-service/${component}" /tmp/changed_dirs.txt && was_changed=true
             [ -d "docs/${component}" ] || mkdir -p "docs/${component}"
             spec_file="docs/${component}/functional-spec.md"
             guide_file="docs/${component}/user-guide.md"
