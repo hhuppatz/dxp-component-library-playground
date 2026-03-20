@@ -1,24 +1,54 @@
 # Functional Specification: Block Quote Component
 
 ## Overview
-The **Block Quote** component is designed to display a stylized quotation with the option to include the author's name and an introductory title. Use this component to highlight key quotes, testimonials, or statements within a webpage, providing emphasis and visual distinction. It supports inline content editing, making it easy for content authors to update its text properties without technical assistance.
+The **Block Quote** component displays a quoted text with an optional title and author name. It is designed for situations where highlighted quotations or testimonials are needed, such as marketing pages, blog posts, or team introductions.
 
-## Properties and Fields
+### Key Features
+- Prominently showcases a quote, with optional metadata like the title and the author.
+- Supports inline editing and translation for all text fields.
+- Includes customizable visual styling and a default preview configuration.
 
-| Field         | Type           | Title        | Description                                     | Default Value    | Required |
-|---------------|----------------|--------------|-------------------------------------------------|------------------|----------|
-| `title`       | `string`       | "Title"      | The heading above the quote. Can summarize the quote's context. | "Section title" | No       |
-| `quote`       | `FormattedText`| "Quote"      | The primary text of the quote. Supports basic formatting. | -                | Yes      |
-| `author`      | `string`       | "Author"     | The name of the quote's author.                | "Author"         | No       |
+---
 
-### Special Field Types
-- **FormattedText**: Allows for rich text input, including simple formatting like bold, italics, and hyperlinks.
-- **Inline Editable Fields**: Fields marked with `inlineEditable` (e.g., `title`, `quote`, `author`) can be edited directly within the component interface during content management.
-  
+## Component Fields
+
+### **Title**
+- **Type**: `string`
+- **Description**: The optional title displayed above the quote (e.g., "Testimonial Section").
+- **Default Value**: "Section title"
+- **Required**: No
+- **Notes**: Supports inline editing and translation.
+
+### **Quote**
+- **Type**: `FormattedText`
+- **Description**: The main content of the quote to be displayed.
+- **Default Value**: None
+- **Required**: Yes
+- **Notes**: A rich-text type for styled text. Inline-editable and translatable.
+
+### **Author**
+- **Type**: `string`
+- **Description**: The name of the person who stated the quote.
+- **Default Value**: "Author"
+- **Required**: No
+- **Notes**: Supports inline editing and translation.
+
+### **Favourite Coffee**
+- **Type**: `string`
+- **Description**: An optional fun fact about the speaker, like their favorite coffee.
+- **Default Value**: "Latte"
+- **Required**: No
+- **Notes**: Optional field for lighthearted personalization.
+
+### Custom Field Types
+- **FormattedText**: A customizable rich text field supporting styled content, ideal for multi-line quotes.
+
+---
+
 ## Conditional Logic
-The `quote` field is required for the component to render properly. If this field is left empty, the component will not display. The `title` and `author` fields are optional but recommended for providing context and attribution, respectively.
+There are no dynamic or conditional dependencies among fields.
 
-## Variations and Previews
-The Block Quote component supports a "default" visual variation, which displays the title (if provided), followed by the quote text and the author's name. A named preview is available to content editors, providing a pre-filled example (via `example.data.json`) for easy visualization during configuration.
+---
 
-By adhering to this specification, users can seamlessly integrate and customize the Block Quote component to enhance content readability and highlight key messages on their web pages.
+## Previews
+The component includes a **default preview** configured to render mocked data (`example.data.json`) within a styled wrapper (`preview.html`). This preview demonstrates the visual design and functionality of the Block Quote component in a typical use case. 

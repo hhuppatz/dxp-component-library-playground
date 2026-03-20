@@ -1,30 +1,28 @@
 ```markdown
-# User Guide: Editing a Block Quote in Squiz Matrix
+# User Guide: How to Edit the Block Quote Component
 
-The **Block Quote** component highlights a quote on a webpage with an optional title and author. It’s perfect for emphasizing key messages, testimonials, or inspirational sayings. On the page, it typically displays as a block of text with the quote in large or italicized font, an optional title at the top, and the author’s name beneath the quote.
+The Block Quote component is a stylish way to display a quote on a webpage. It features a highlighted quote, an optional title above it, and the name of the quote's author below. Use this component to draw attention to inspiring quotes, testimonials, or key statements.
 
-## How to Edit the Block Quote Component
-
-### Step-by-Step Instructions
+## Step-by-Step Instructions for Editing
 
 1. **Title (Optional)**  
-   - Fill in the "Title" field with a short heading that introduces the quote (e.g., "Customer Testimonials").
-   - This field is optional. If left blank, no title will appear.
+   - This is the heading that appears above the quote.  
+   - Example: “Quote of the Day.”  
+   - If you don’t want a title, you can leave this field blank.
 
 2. **Quote (Required)**  
-   - Enter the main quote text in the "Quote" field. This is the most important part, so make it engaging and accurate.
-   - This field is required. The quote won’t display if left empty.
+   - Enter the main quote text here. This field **must** be filled out for the component to display properly.  
+   - Best practice: Keep the quote concise and impactful.
 
 3. **Author (Optional)**  
-   - Add the name of the person being quoted in the "Author" field (e.g., "John Doe, CEO").
-   - If you don’t include an author, the quote will display without a name beneath it.
+   - Add the name of the person who said the quote. If you don’t have a name, you can skip this field.  
+   - Example: “Albert Einstein.”
 
-### Tips & Best Practices
+4. **Favourite Coffee (Optional)**  
+   - This field is meant for personalization or fun but doesn’t typically display in the component on the webpage. You can leave it at the default or write something playful, like “Espresso.”
 
-- Keep the quote short and impactful—it should quickly grab the reader's attention.
-- Use the title to provide context for the quote if it’s part of a larger section or theme.
-- If citing an author, make sure their name is spelled correctly and include their role or title for added credibility (e.g., "Jane Smith, Marketing Director").
-- Preview the page to ensure the quote, title, and author display correctly and look balanced.
-
-Start small—focus on choosing a meaningful quote that resonates with your audience!
+## Tips and Best Practices
+- **Short and Snappy:** Keep your quotes brief for maximum impact.
+- **Fact Check:** Ensure the quote is accurate and attributed to the correct author.
+- **Preview Your Changes:** Always check how the component looks on the page after editing to make sure everything lines up and displays correctly.
 ```
