@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>HH - Block Quote — Component User Guide</title>
+<style>
+/* ucx:managed-css */
+/* /ucx:managed-css */
+</style>
+</head>
+<body class="antialiased bg-gray-50">
+<div class="max-w-screen-xl mx-auto px-4 pt-10">
+  <p class="text-xs font-semibold uppercase tracking-widest text-blue-600 mb-2">Component guide</p>
+  <h1 class="text-4xl font-extrabold tracking-tight text-gray-900">HH - Block Quote</h1>
+  <p data-ucx-prose="overview" class="text-lg text-gray-500 mt-3 max-w-2xl">Displays a quote with the author's name.</p>
+  <div class="mt-4 flex flex-wrap items-center gap-x-3 gap-y-2 text-xs text-gray-400">
+    <code class="bg-gray-100 px-1.5 py-0.5 rounded text-gray-600">hh-blockquote</code>
+    <span class="text-gray-300">·</span><span>v1.0.0</span>
+  </div>
+  <p class="text-xs font-semibold uppercase tracking-widest text-gray-400 mt-10 mb-3">Component preview</p>
+</div>
+<div class="border-y border-gray-200 bg-white">
+<!-- ucx:render component="hh-blockquote" role="preview" id="default" badge="first" -->
+<!-- ucx:data
+{
+  "title": "Blockquote component",
+  "quote": "<p>Separated they live in  Bookmarksgrove right at the coast of the Semantics, a large language  ocean. A small river named Duden flows by their place and supplies it  with the necessary regelialia. It is a paradisematic country, in which  roaste.</p>",
+  "author": "Aristotle",
+  "favouriteCoffee": "Cuppa joe"
+}
+-->
+<section class="blockquote-section">
+        <!-- Conditionally render title of the section -->
+        <h2 data-sq-field="title" class="heading-secondary">Blockquote component<span data-ucx-badge class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-blue-700 text-white text-xs font-bold shrink-0 align-middle mr-1">1</span></h2>
+
+        <blockquote class="blockquote">
+          <div data-sq-field="quote" class="blockquote__content">
+            <p>Separated they live in  Bookmarksgrove right at the coast of the Semantics, a large language  ocean. A small river named Duden flows by their place and supplies it  with the necessary regelialia. It is a paradisematic country, in which  roaste.</p>
+
+            <!-- The "author" property is optional, so use conditional rendering to avoid displaying "undefined" when the author is not provided. -->
+
+            <cite data-sq-field="author" class="blockquote__author">Aristotle<span data-ucx-badge class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-blue-700 text-white text-xs font-bold shrink-0 align-middle mr-1">2</span></cite>
+              
+            <p data-sq-field="favouriteCoffee" class="blockquote__favouriteCoffee">Cuppa joe<span data-ucx-badge class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-blue-700 text-white text-xs font-bold shrink-0 align-middle mr-1">3</span></p>
+          <span data-ucx-badge class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-blue-700 text-white text-xs font-bold shrink-0 align-middle mr-1">4</span></div>
+        </blockquote>
+      </section>
+<!-- /ucx:render -->
+</div>
+<div class="max-w-screen-xl mx-auto px-4 py-10">
+  <p class="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-1">Editable fields</p>
+  <p class="text-sm text-gray-400 mb-4">Each number matches a circled badge on the component above.</p>
+  <div class="rounded-lg border border-gray-200 bg-white shadow-sm divide-y divide-gray-100">
+        <div class="px-5 py-4" data-ucx-field="title">
+          <div class="flex items-start gap-3">
+            <span data-ucx-num class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-blue-700 text-white text-xs font-bold shrink-0">1</span>
+            <div class="flex-1 min-w-0">
+              <div class="flex flex-wrap items-center gap-2 mb-1">
+                <span class="font-semibold text-gray-900 text-sm">Title</span>
+                <span class="inline-flex items-center whitespace-nowrap rounded-full px-2 py-0.5 text-xs font-medium bg-yellow-100 text-yellow-800">Optional</span>
+                <span class="inline-flex items-center whitespace-nowrap rounded-full px-2 py-0.5 text-xs font-medium bg-sky-100 text-sky-800">Editable text</span>
+              </div>
+              <p data-ucx-prose="field:title" class="text-sm text-gray-500 mb-3">The title displayed above the quote.</p>
+              <table class="w-full table-fixed text-xs text-left text-gray-600 border-collapse">
+                <thead><tr class="text-gray-400 uppercase tracking-wide"><th class="pb-1 font-semibold pr-6 w-2/5">Property</th><th class="pb-1 font-semibold pr-6 w-1/5">Type</th><th class="pb-1 font-semibold">Notes</th></tr></thead>
+                <tbody class="divide-y divide-gray-50">
+                  <tr><td class="py-1 pr-6 font-medium text-gray-700 break-words">Title</td><td class="py-1 pr-6 text-gray-500 break-words">Text</td><td class="py-1 break-words">The title displayed above the quote.</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div class="px-5 py-4" data-ucx-field="author">
+          <div class="flex items-start gap-3">
+            <span data-ucx-num class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-blue-700 text-white text-xs font-bold shrink-0">2</span>
+            <div class="flex-1 min-w-0">
+              <div class="flex flex-wrap items-center gap-2 mb-1">
+                <span class="font-semibold text-gray-900 text-sm">Author</span>
+                <span class="inline-flex items-center whitespace-nowrap rounded-full px-2 py-0.5 text-xs font-medium bg-yellow-100 text-yellow-800">Optional</span>
+                <span class="inline-flex items-center whitespace-nowrap rounded-full px-2 py-0.5 text-xs font-medium bg-sky-100 text-sky-800">Editable text</span>
+              </div>
+              <p data-ucx-prose="field:author" class="text-sm text-gray-500 mb-3">The name of the quote's author.</p>
+              <table class="w-full table-fixed text-xs text-left text-gray-600 border-collapse">
+                <thead><tr class="text-gray-400 uppercase tracking-wide"><th class="pb-1 font-semibold pr-6 w-2/5">Property</th><th class="pb-1 font-semibold pr-6 w-1/5">Type</th><th class="pb-1 font-semibold">Notes</th></tr></thead>
+                <tbody class="divide-y divide-gray-50">
+                  <tr><td class="py-1 pr-6 font-medium text-gray-700 break-words">Author</td><td class="py-1 pr-6 text-gray-500 break-words">Text</td><td class="py-1 break-words">The name of the quote's author.</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div class="px-5 py-4" data-ucx-field="favouriteCoffee">
+          <div class="flex items-start gap-3">
+            <span data-ucx-num class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-blue-700 text-white text-xs font-bold shrink-0">3</span>
+            <div class="flex-1 min-w-0">
+              <div class="flex flex-wrap items-center gap-2 mb-1">
+                <span class="font-semibold text-gray-900 text-sm">Favourite Coffee</span>
+                <span class="inline-flex items-center whitespace-nowrap rounded-full px-2 py-0.5 text-xs font-medium bg-yellow-100 text-yellow-800">Optional</span>
+                <span class="inline-flex items-center whitespace-nowrap rounded-full px-2 py-0.5 text-xs font-medium bg-sky-100 text-sky-800">Editable text</span>
+              </div>
+              <p data-ucx-prose="field:favouriteCoffee" class="text-sm text-gray-500 mb-3">The user's favourite coffee.</p>
+              <table class="w-full table-fixed text-xs text-left text-gray-600 border-collapse">
+                <thead><tr class="text-gray-400 uppercase tracking-wide"><th class="pb-1 font-semibold pr-6 w-2/5">Property</th><th class="pb-1 font-semibold pr-6 w-1/5">Type</th><th class="pb-1 font-semibold">Notes</th></tr></thead>
+                <tbody class="divide-y divide-gray-50">
+                  <tr><td class="py-1 pr-6 font-medium text-gray-700 break-words">Favourite Coffee</td><td class="py-1 pr-6 text-gray-500 break-words">Text</td><td class="py-1 break-words">The user's favourite coffee.</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div class="px-5 py-4" data-ucx-field="quote">
+          <div class="flex items-start gap-3">
+            <span data-ucx-num class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-blue-700 text-white text-xs font-bold shrink-0">4</span>
+            <div class="flex-1 min-w-0">
+              <div class="flex flex-wrap items-center gap-2 mb-1">
+                <span class="font-semibold text-gray-900 text-sm">Quote</span>
+                <span class="inline-flex items-center whitespace-nowrap rounded-full px-2 py-0.5 text-xs font-medium bg-green-100 text-green-800">Required</span>
+                <span class="inline-flex items-center whitespace-nowrap rounded-full px-2 py-0.5 text-xs font-medium bg-sky-100 text-sky-800">Editable text</span>
+              </div>
+              <p data-ucx-prose="field:quote" class="text-sm text-gray-500 mb-3">The text of the quote.</p>
+              <table class="w-full table-fixed text-xs text-left text-gray-600 border-collapse">
+                <thead><tr class="text-gray-400 uppercase tracking-wide"><th class="pb-1 font-semibold pr-6 w-2/5">Property</th><th class="pb-1 font-semibold pr-6 w-1/5">Type</th><th class="pb-1 font-semibold">Notes</th></tr></thead>
+                <tbody class="divide-y divide-gray-50">
+                  <tr><td class="py-1 pr-6 font-medium text-gray-700 break-words">Quote</td><td class="py-1 pr-6 text-gray-500 break-words">Formatted text</td><td class="py-1 break-words">The text of the quote.</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+  <div class="mt-6 flex flex-wrap gap-x-4 gap-y-2 text-xs text-gray-500 items-center">
+    <span class="font-semibold text-gray-400 uppercase tracking-widest">Key</span>
+    <span class="flex items-center gap-1.5"><span class="inline-flex items-center whitespace-nowrap rounded-full px-2 py-0.5 text-xs font-medium bg-green-100 text-green-800">Required</span> always present</span>
+    <span class="flex items-center gap-1.5"><span class="inline-flex items-center whitespace-nowrap rounded-full px-2 py-0.5 text-xs font-medium bg-yellow-100 text-yellow-800">Optional</span> can be hidden</span>
+    <span class="flex items-center gap-1.5"><span class="inline-flex items-center whitespace-nowrap rounded-full px-2 py-0.5 text-xs font-medium bg-sky-100 text-sky-800">Editable text</span> text you can change</span>
+    <span class="flex items-center gap-1.5"><span class="inline-flex items-center whitespace-nowrap rounded-full px-2 py-0.5 text-xs font-medium bg-violet-100 text-violet-800">Choice</span> pick from options</span>
+    <span class="flex items-center gap-1.5"><span class="inline-flex items-center whitespace-nowrap rounded-full px-2 py-0.5 text-xs font-medium bg-gray-100 text-gray-800">Image / Link / Toggle</span> other field types</span>
+    <span class="flex items-center gap-1.5"><span class="inline-flex items-center whitespace-nowrap rounded-full px-2 py-0.5 text-xs font-medium bg-sky-100 text-sky-800">Inline edit</span> click-to-edit in the page</span>
+    <span class="flex items-center gap-1.5"><span class="inline-flex items-center whitespace-nowrap rounded-full px-2 py-0.5 text-xs font-medium bg-gray-100 text-gray-800">Quick option</span> set in the options panel</span>
+  </div>
+  <h2 class="text-2xl font-bold text-gray-900 mt-16">Variant states</h2>
+  <p class="text-base text-gray-500 mt-2">Here are some variations of the HH - Block Quote component, each showing a different visible change.</p>
+  <div class="mt-6">
+  <!-- ucx:variants -->
+<p class="text-base text-gray-500">Variant examples are added by the guide workflow.</p>
+<!-- /ucx:variants -->
+  </div>
+  <h2 class="text-2xl font-bold text-gray-900 mt-16">Add the component to your page</h2>
+  <div class="mt-4 text-base text-gray-600 space-y-4 max-w-3xl">
+    <p>When you are editing your page using Page Builder:</p>
+    <ol class="list-decimal ps-5 space-y-2">
+      <li>Add a component to your page by clicking the <span class="font-semibold text-gray-900">Add component</span> button, or by adding a content block then clicking <span class="font-semibold text-gray-900">Add component</span>.</li>
+      <li>Locate the <span class="font-semibold text-gray-900">HH - Block Quote</span> component within the component browser, then click the <span class="font-semibold text-gray-900">Select</span> button.</li>
+    </ol>
+  </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
+<script>
+/* ucx:managed-js */
+/* /ucx:managed-js */
+</script>
+</body>
+</html>

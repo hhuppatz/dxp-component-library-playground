@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>HH - Banner — Component User Guide</title>
+<style>
+/* ucx:managed-css */
+/* /ucx:managed-css */
+</style>
+</head>
+<body class="antialiased bg-gray-50">
+<div class="max-w-screen-xl mx-auto px-4 pt-10">
+  <p class="text-xs font-semibold uppercase tracking-widest text-blue-600 mb-2">Component guide</p>
+  <h1 class="text-4xl font-extrabold tracking-tight text-gray-900">HH - Banner</h1>
+  <p data-ucx-prose="overview" class="text-lg text-gray-500 mt-3 max-w-2xl">Displays a background media element such as a video, image, or a flat background color.</p>
+  <div class="mt-4 flex flex-wrap items-center gap-x-3 gap-y-2 text-xs text-gray-400">
+    <code class="bg-gray-100 px-1.5 py-0.5 rounded text-gray-600">hh-banner</code>
+    <span class="text-gray-300">·</span><span>v1.0.0</span>
+  </div>
+  <p class="text-xs font-semibold uppercase tracking-widest text-gray-400 mt-10 mb-3">Component preview</p>
+</div>
+<div class="border-y border-gray-200 bg-white">
+<!-- ucx:render component="hh-banner" role="preview" id="default" badge="first" -->
+<!-- ucx:data
+{
+  "mediaType": "image",
+  "heading": "Welcome to All Components Page",
+  "image": {
+    "name": "My Image",
+    "alt": "This is the image alt text",
+    "imageVariations": {
+      "original": {
+        "url": "https://picsum.photos/800/600",
+        "width": 1500,
+        "height": 500,
+        "byteSize": 1000,
+        "mimeType": "image/jpeg",
+        "aspectRatio": "1:1",
+        "sha1Hash": "1234567890abcdef1234567890abcdef12345678"
+      }
+    }
+  }
+}
+-->
+<section class="banner" id="default-banner-1234">
+        <!-- In the mediaElement will be displayed video, image or simple background, depending on what editor user pass -->
+
+        <img data-sq-field="image" src="https://picsum.photos/800/600" alt="This is the image alt text" class="banner__media" />
+        <div class="banner__content">
+          <h1 data-sq-field="heading" class="banner__title">
+            Welcome to All Components Page
+          <span data-ucx-badge class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-blue-700 text-white text-xs font-bold shrink-0 align-middle mr-1">1</span></h1>
+        </div>
+
+        <!-- Additional buttons for play or pause - only for video -->
+
+        
+      </section>
+<!-- /ucx:render -->
+</div>
+<div class="max-w-screen-xl mx-auto px-4 py-10">
+  <p class="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-1">Editable fields</p>
+  <p class="text-sm text-gray-400 mb-4">Each number matches a circled badge on the component above.</p>
+  <div class="rounded-lg border border-gray-200 bg-white shadow-sm divide-y divide-gray-100">
+        <div class="px-5 py-4" data-ucx-field="heading">
+          <div class="flex items-start gap-3">
+            <span data-ucx-num class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-blue-700 text-white text-xs font-bold shrink-0">1</span>
+            <div class="flex-1 min-w-0">
+              <div class="flex flex-wrap items-center gap-2 mb-1">
+                <span class="font-semibold text-gray-900 text-sm">Heading</span>
+                <span class="inline-flex items-center whitespace-nowrap rounded-full px-2 py-0.5 text-xs font-medium bg-green-100 text-green-800">Required</span>
+                <span class="inline-flex items-center whitespace-nowrap rounded-full px-2 py-0.5 text-xs font-medium bg-sky-100 text-sky-800">Editable text</span>
+              </div>
+              <p data-ucx-prose="field:heading" class="text-sm text-gray-500 mb-3">Enter text for the main heading.</p>
+              <table class="w-full table-fixed text-xs text-left text-gray-600 border-collapse">
+                <thead><tr class="text-gray-400 uppercase tracking-wide"><th class="pb-1 font-semibold pr-6 w-2/5">Property</th><th class="pb-1 font-semibold pr-6 w-1/5">Type</th><th class="pb-1 font-semibold">Notes</th></tr></thead>
+                <tbody class="divide-y divide-gray-50">
+                  <tr><td class="py-1 pr-6 font-medium text-gray-700 break-words">Heading</td><td class="py-1 pr-6 text-gray-500 break-words">Text</td><td class="py-1 break-words">Enter text for the main heading.</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+  <p class="text-xs font-semibold uppercase tracking-widest text-gray-400 mt-8 mb-3">Settings &amp; options</p>
+      <div class="rounded-lg border border-gray-200 bg-white shadow-sm overflow-hidden">
+        <table class="w-full text-xs text-left text-gray-600 border-collapse">
+          <thead><tr class="text-gray-400 uppercase tracking-wide bg-gray-50"><th class="px-3 py-1.5 font-semibold">Option</th><th class="px-3 py-1.5 font-semibold">Type</th><th class="px-3 py-1.5 font-semibold">Default</th><th class="px-3 py-1.5 font-semibold hidden sm:table-cell">Notes</th></tr></thead>
+          <tbody class="divide-y divide-gray-100">
+            <tr><td class="px-3 py-1.5 align-top font-medium text-gray-700 break-words">Media Type</td><td class="px-3 py-1.5 align-top text-gray-500">Choice <span class="inline-flex items-center whitespace-nowrap rounded-full px-2 py-0.5 text-xs font-medium bg-gray-100 text-gray-800">Quick option</span></td><td class="px-3 py-1.5 align-top font-mono">none</td><td class="px-3 py-1.5 align-top hidden sm:table-cell">Select the type of background media: video, image, or a flat background color if none is selected.</td></tr>
+          </tbody>
+        </table>
+      </div>
+  <div class="mt-6 flex flex-wrap gap-x-4 gap-y-2 text-xs text-gray-500 items-center">
+    <span class="font-semibold text-gray-400 uppercase tracking-widest">Key</span>
+    <span class="flex items-center gap-1.5"><span class="inline-flex items-center whitespace-nowrap rounded-full px-2 py-0.5 text-xs font-medium bg-green-100 text-green-800">Required</span> always present</span>
+    <span class="flex items-center gap-1.5"><span class="inline-flex items-center whitespace-nowrap rounded-full px-2 py-0.5 text-xs font-medium bg-yellow-100 text-yellow-800">Optional</span> can be hidden</span>
+    <span class="flex items-center gap-1.5"><span class="inline-flex items-center whitespace-nowrap rounded-full px-2 py-0.5 text-xs font-medium bg-sky-100 text-sky-800">Editable text</span> text you can change</span>
+    <span class="flex items-center gap-1.5"><span class="inline-flex items-center whitespace-nowrap rounded-full px-2 py-0.5 text-xs font-medium bg-violet-100 text-violet-800">Choice</span> pick from options</span>
+    <span class="flex items-center gap-1.5"><span class="inline-flex items-center whitespace-nowrap rounded-full px-2 py-0.5 text-xs font-medium bg-gray-100 text-gray-800">Image / Link / Toggle</span> other field types</span>
+    <span class="flex items-center gap-1.5"><span class="inline-flex items-center whitespace-nowrap rounded-full px-2 py-0.5 text-xs font-medium bg-sky-100 text-sky-800">Inline edit</span> click-to-edit in the page</span>
+    <span class="flex items-center gap-1.5"><span class="inline-flex items-center whitespace-nowrap rounded-full px-2 py-0.5 text-xs font-medium bg-gray-100 text-gray-800">Quick option</span> set in the options panel</span>
+  </div>
+  <h2 class="text-2xl font-bold text-gray-900 mt-16">Variant states</h2>
+  <p class="text-base text-gray-500 mt-2">Here are some variations of the HH - Banner component, each showing a different visible change.</p>
+  <div class="mt-6">
+  <!-- ucx:variants -->
+<p class="text-base text-gray-500">Variant examples are added by the guide workflow.</p>
+<!-- /ucx:variants -->
+  </div>
+  <h2 class="text-2xl font-bold text-gray-900 mt-16">Add the component to your page</h2>
+  <div class="mt-4 text-base text-gray-600 space-y-4 max-w-3xl">
+    <p>When you are editing your page using Page Builder:</p>
+    <ol class="list-decimal ps-5 space-y-2">
+      <li>Add a component to your page by clicking the <span class="font-semibold text-gray-900">Add component</span> button, or by adding a content block then clicking <span class="font-semibold text-gray-900">Add component</span>.</li>
+      <li>Locate the <span class="font-semibold text-gray-900">HH - Banner</span> component within the component browser, then click the <span class="font-semibold text-gray-900">Select</span> button.</li>
+    </ol>
+  </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
+<script>
+/* ucx:managed-js */
+/* /ucx:managed-js */
+</script>
+</body>
+</html>

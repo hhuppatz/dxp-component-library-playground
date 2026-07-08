@@ -4,11 +4,13 @@
   "version": "0.0.1",
   "type": "module",
   "scripts": {
-    "dev": "concurrently --kill-others \"npm run cmp\" \"sleep 2 && node server\"",
+    "dev": "concurrently --kill-others \"npm run watch:preview-css\" \"dxp-next cmp dev-ui ./dxp/component-service\" \"sleep 2 && node server\"",
     "build": "npm run build:client && npm run build:server",
     "build:client": "vite build --ssrManifest",
     "build:server": "vite build --ssr src/entry-server.js",
-    "cmp": "dxp-next cmp dev-ui ./dxp/component-service",
+    "build:preview-css": "node dxp/01_compilers/preview-css-compiler.js",
+    "watch:preview-css": "node dxp/01_compilers/preview-css-compiler.js --watch",
+    "cmp": "npm run build:preview-css && dxp-next cmp dev-ui ./dxp/component-service",
     "test": "vitest --coverage",
     "lint:css": "stylelint \"**/*.scss\"",
     "lint:css:fix": "stylelint \"**/*.scss\" --fix",
@@ -20,7 +22,10 @@
     "vermgmt": "vermgmt",
     "lint:js": "eslint dxp/component-service src/scripts",
     "lint:js:fix": "eslint dxp/component-service src/scripts --fix",
-    "fix:all": "npm run lint:css:fix && npm run lint:js:fix && npm run prettier:fix"
+    "fix:all": "npm run lint:css:fix && npm run lint:js:fix && npm run prettier:fix",
+    "guides:render": "node scripts/user-guide-scripts/render-guides.mjs",
+    "guides:pass": "node scripts/user-guide-scripts/ci-guide-pass.mjs",
+    "guides:mock": "cross-env MODELS_MOCK=1 node scripts/user-guide-scripts/ci-guide-pass.mjs"
   },
   "devDependencies": {
     "@squiz/component-lib": "^1.7.0",

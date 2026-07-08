@@ -1,0 +1,146 @@
+name: Generate Component User Guides (HTML)
+
+# The "real-markup" HTML user-guide pipeline (ported from the UltraCX repo):
+#   1. node scripts/user-guide-scripts/render-guides.mjs  — deterministically (no model) builds the page
+#      structure and renders the REAL component (imports its main.js and captures the returned HTML) into
+#      docs/<component>/user-guide.html.
+#   2. node scripts/user-guide-scripts/ci-guide-pass.mjs  — a model chooses VARIANT examples (functions
+#      render them) and rewrites the editor-friendly PROSE. Both are persisted in the page.
+# Commits the result to docs/<component>/user-guide.html on the branch it was run from.
+#
+# ⚠️ This repo ALSO has generate-component-docs.yml, which writes markdown docs/<component>/user-guide.md on
+#    push. Both trigger on push to dxp/component-service/** and both push to docs/, so they can race on
+#    `git push`. For isolated testing, run THIS one manually (Actions → Run workflow) with a component name,
+#    or temporarily disable the markdown workflow. Different file extensions (.html vs .md) mean no file clash.
+#
+# Runs in TWO ways:
+#   • Automatically on push when component source changes — regenerates ONLY the changed components.
+#   • Manually via "Run workflow": pass a component folder name (e.g. hh-card), a comma list, or leave blank
+#     to regenerate ALL components.
+# The guide commit carries [skip ci] and only touches docs/, so it never re-triggers this workflow.
+on:
+  push:
+    paths:
+      - 'dxp/component-service/**'
+  workflow_dispatch:
+    inputs:
+      component:
+        description: "Component folder name to generate a guide for (e.g. hh-card). Comma-separate for several. Leave blank for ALL components."
+        required: false
+        default: ""
+
+permissions:
+  contents: write
+
+# Let a newer push supersede an in-flight run on the same branch (but don't cancel a half-done commit).
+concurrency:
+  group: user-guides-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  # ── Work out which components to (re)generate ─────────────────────────────────────────────────────
+  detect:
+    runs-on: ubuntu-latest
+    outputs:
+      components: ${{ steps.detect.outputs.components }}
+      count: ${{ steps.detect.outputs.count }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # need history so the previous remote tip (before-SHA) is available to diff
+
+      - name: Determine changed components
+        id: detect
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          INPUT_COMPONENT: ${{ inputs.component }}
+          BEFORE: ${{ github.event.before }}
+          AFTER: ${{ github.sha }}
+        run: |
+          set -euo pipefail
+
+          # Manual run: honour the typed input verbatim (blank string => all components downstream).
+          if [ "$EVENT_NAME" = "workflow_dispatch" ]; then
+            echo "Manual run — components='${INPUT_COMPONENT:-<all>}'"
+            echo "components=$INPUT_COMPONENT" >> "$GITHUB_OUTPUT"
+            echo "count=1" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          # Push run: diff the previous remote tip against the pushed tip. Fall back gracefully when the
+          # before-SHA is absent (new branch = all-zeros, or a force-push rewrote it away).
+          ZERO="0000000000000000000000000000000000000000"
+          if [ "$BEFORE" = "$ZERO" ] || ! git cat-file -e "${BEFORE}^{commit}" 2>/dev/null; then
+            if git rev-parse "${AFTER}^" >/dev/null 2>&1; then
+              RANGE="${AFTER}^ ${AFTER}"
+            else
+              RANGE="$(git hash-object -t tree /dev/null) ${AFTER}"
+            fi
+          else
+            RANGE="${BEFORE} ${AFTER}"
+          fi
+          echo "Diffing component sources: git diff --name-only $RANGE -- dxp/component-service"
+
+          CHANGED="$(git diff --name-only $RANGE -- dxp/component-service || true)"
+          COMPONENTS="$(printf '%s\n' "$CHANGED" \
+            | sed -n 's#^dxp/component-service/\([^/]*\)/.*#\1#p' \
+            | sort -u \
+            | while read -r c; do [ -n "$c" ] && [ -f "dxp/component-service/$c/manifest.json" ] && echo "$c"; done \
+            | paste -sd, -)"
+
+          echo "Changed components: '${COMPONENTS:-<none>}'"
+          echo "components=$COMPONENTS" >> "$GITHUB_OUTPUT"
+          if [ -n "$COMPONENTS" ]; then
+            echo "count=1" >> "$GITHUB_OUTPUT"
+          else
+            echo "count=0" >> "$GITHUB_OUTPUT"
+          fi
+
+  # ── Regenerate the guides for those components and commit them back ───────────────────────────────
+  generate:
+    needs: detect
+    if: needs.detect.outputs.count != '0'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Generate guide structure + real render (deterministic)
+        env:
+          COMPONENT: ${{ needs.detect.outputs.components }}
+        run: node scripts/user-guide-scripts/render-guides.mjs
+
+      - name: Model once-over — variants + editor-friendly prose
+        env:
+          COMPONENT: ${{ needs.detect.outputs.components }}
+          # Anthropic (Claude) API key — add it as a repo secret: Settings → Secrets and variables → Actions.
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          # Claude model id. Override without a code change by setting a repo Actions variable MODELS_MODEL —
+          # e.g. 'claude-haiku-4-5' to cut cost for this small JSON job.
+          MODELS_MODEL: ${{ vars.MODELS_MODEL || 'claude-opus-4-8' }}
+        run: node scripts/user-guide-scripts/ci-guide-pass.mjs
+
+      - name: Commit user guide(s)
+        env:
+          BRANCH: ${{ github.ref_name }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/
+          if git diff --cached --quiet; then
+            echo "No user-guide changes to commit."
+          else
+            git commit -m "docs: generate component user guide(s) [skip ci]"
+            git push origin "HEAD:$BRANCH"
+          fi

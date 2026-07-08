@@ -1,4 +1,5 @@
-import xss, { getDefaultWhiteList } from 'xss';
+import xss from 'xss';
+const { getDefaultWhiteList } = xss;
 
 var specificTagChanges = {
   circle: ['cx', 'cy', 'r', 'stroke', 'stroke-width', 'fill'],

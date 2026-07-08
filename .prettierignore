@@ -1,0 +1,6 @@
+# Build output
+dist
+
+# Component preview wrappers carry an auto-generated inlined <style> block
+# (see dxp/01_compilers/preview-css-compiler.js) — leave formatting to the generator.
+dxp/component-service/*/preview.html

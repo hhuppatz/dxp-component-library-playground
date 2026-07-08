@@ -149,6 +149,35 @@ And open the port:
 
    This port provides a CMS-like preview showing how the component’s fields (for example, string, SquizImage) are displayed in Matrix. It simulates the field setup UI for better context during development.
 
+### Styled component previews in the Squiz dev UI
+
+By default the Squiz `dxp-next cmp dev-ui` preview (ports 3000/5555) renders the
+raw component HTML **without styles** — a component's `css/*.scss` relies on the
+shared design-system variables in `src/styles`, which the isolated preview does
+not load.
+
+To fix this, `dxp/01_compilers/preview-css-compiler.js` compiles a self-contained
+stylesheet for each component (design-system `:root` variables + global reset +
+base typography + the component's own SCSS) and inlines it into that component's
+`preview.html`, between the `<!-- preview-css:start -->` / `<!-- preview-css:end -->`
+markers.
+
+`preview.html` is the **preview wrapper** — it is used only by the dev UI and the
+DXP console preview, never by the deployed production render. Injecting styles
+here therefore has **no effect on `dxp-next cmp deploy` output** (unlike a
+manifest `functions[].output.staticFiles` entry, which would ship this reset onto
+host pages).
+
+- `npm run cmp` — builds the preview stylesheets, then starts the dev UI.
+- `npm run dev` — also watches `*.scss` and rebuilds the preview styles on change
+  (the dev UI live-reloads).
+- `npm run build:preview-css` — build once (e.g. before running the raw
+  `dxp-next cmp dev-ui dxp/component-service/<component>` command).
+
+The `<style>` block inside each `preview.html` is generated — edit the SCSS and
+regenerate, don't edit the block by hand. Everything outside the markers (page
+structure, a `<body>` theme class, etc.) is preserved across rebuilds.
+
 ## Create a new component
 
 To create a new component, start in the `dxp/component-service` directory and create a new folder with the name of your component. Alternatively, copy an existing one and adjust the names.
