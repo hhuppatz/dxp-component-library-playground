@@ -1,38 +1,36 @@
-```markdown
-# User Guide: Editing the **HH - Banner** Component
+# User Guide: Editing the HH - Banner Component
 
-## About the HH - Banner
-The **HH - Banner** is a versatile web element that displays a background for your page. You can choose to showcase a video, an image, or simply a flat color. It also includes a heading to grab attention or communicate the purpose of the page. Use this component on areas where striking visuals or key messages are needed, like the top of a page.
+The HH - Banner component creates a visually striking banner with customizable background media (video, image, or flat color) and an attention-grabbing heading. This is ideal for showcasing a featured message or visually enhancing page sections.
 
 ---
 
-## How to Edit the HH - Banner
+### Step-by-Step Instructions for Editing
 
-To set up or edit the **HH - Banner**, follow these steps:
+1. **Media Type (Required)**  
+   Choose the type of background media using the dropdown menu. Options:  
+   - **Video**: Displays a video as the background.  
+   - **Image**: Displays an image as the background.  
+   - **None**: Uses a flat background color.  
+   Tip: Select “None” for a minimal look.
 
-1. **Choose Media Type (Required):**  
-   Select the type of background you want:
-   - **Video**: Displays a video as the background.
-   - **Image**: Displays a still image.
-   - **None**: Uses a flat background color instead.
+2. **Heading (Required)**  
+   Enter the main text for the banner. Keep it concise and clear to grab attention.  
+   Tip: Use action-oriented phrases, like “Explore Our Services” or “Join Us Today!”
 
-2. **Add a Heading (Required):**  
-   Enter the text for the main heading. This is the title users will see over the banner, so keep it concise, clear, and relevant.
+3. **Video Source (Required if "Media Type" is Video)**  
+   If you selected "Video," link to the relevant video asset in Squiz Matrix.  
+   Tip: Ensure the video is high-quality and visually appealing.
 
-3. **Conditional Settings (Optional):**  
-   Depending on your chosen media type, additional fields may appear:  
-   - **Video:** Provide a link to an internal video asset in the "Internal Video Source" field.  
-   - **Image:** Select an image file from the "Image" field.  
-   If you choose "None" as the media type, no extra fields will appear.
+4. **Image (Required if "Media Type" is Image)**  
+   If you selected "Image," choose an image from the Squiz Matrix library.  
+   Tip: Select an image with good contrast against the heading text for readability.
 
 ---
 
-## Tips & Best Practices
+### Tips & Best Practices
 
-- **Heading:** Make sure your heading is easy to read and communicates the main purpose of the page.
-- **Media Type:** Choose visuals or colors that match your brand and enhance user experience. Videos can create a dynamic effect, but use them sparingly to avoid slowing down page loading.
-- **Image Selection:** Go for high-quality images but keep the file size optimized for quick loading.
-- **Preview Your Changes:** Use the preview feature to ensure the final design looks great and fits well with the rest of the page’s content.
+- **Visual Hierarchy**: Pair bold headings with simple backgrounds to make your message stand out.  
+- **Mobile-Friendly Design**: Choose images or videos that look good on smaller screens.  
+- **Test Your Choices**: Preview your banner to ensure the heading is readable and the media looks sharp.  
 
-With these simple steps, you’ll have an impressive banner that grabs attention and enhances your content!
-```
+That’s it! Update your banner to make your page shine. ☀️

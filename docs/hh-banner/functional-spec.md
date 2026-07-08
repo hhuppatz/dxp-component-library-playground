@@ -1,39 +1,37 @@
+```markdown
 # Functional Specification: HH - Banner Component
 
 ## Overview
-
-The **HH - Banner** web component is designed to display a customizable background media element, such as a **video**, **image**, or a **flat background color**. It is ideal for hero sections or promotional areas requiring visually engaging content combined with a text heading. The component dynamically adapts its behavior and fields based on the selected media type.
+The **HH - Banner** component displays a customizable banner with a background media element (video, image, or a flat background color) and a prominent heading. It is ideal for drawing attention to key content, providing visual context, or enhancing the aesthetics of a page. The component dynamically adjusts its fields based on the chosen media type.
 
 ---
 
-## Properties and Fields
+## Available Properties/Fields
 
-| Field         | Type        | Title                   | Description                                                                 | Default Value     | Required | Notes                                                                 |
-|---------------|-------------|-------------------------|-----------------------------------------------------------------------------|-------------------|----------|-----------------------------------------------------------------------|
-| `mediaType`   | `string`    | Media Type              | Defines the type of background media: **video**, **image**, or **none**.    | `none`            | Yes      | Options: `"video"`, `"image"`, `"none"`. Determines appearance and required fields. |
-| `heading`     | `string`    | Heading                 | Text displayed as the banner's title or heading.                            | `"Heading content"`| Yes      | Translatable and inline editable.                                    |
-| `videoSource` | `SquizLink` | Internal Video Source   | A link to the selected internal video asset.                                | None              | Yes (if `mediaType` is `"video"`) | Supports inline editing.                                              |
-| `image`       | `SquizImage`| Image                   | The image asset to display in the banner.                                   | None              | Yes (if `mediaType` is `"image"`) | Supports inline editing.                                              |
+| **Property**   | **Title**              | **Description**                                              | **Type**       | **Default Value** | **Required** |
+|-----------------|------------------------|--------------------------------------------------------------|----------------|-------------------|--------------|
+| `mediaType`    | Media Type             | The type of background media: `video`, `image`, or `none`.   | `enum`         | `none`            | Yes          |
+| `heading`      | Heading                | Text for the main heading.                                   | `string`       | "Heading content" | Yes          |
+| `videoSource`  | Internal Video Source  | Link to the video asset (required if `mediaType` is `video`). | `SquizLink`    | None              | Conditional  |
+| `image`        | Image                  | Image asset (required if `mediaType` is `image`).            | `SquizImage`   | None              | Conditional  |
 
-**Custom Field Types:**
-- **SquizImage**: A file picker input to select an image from the library.
-- **SquizLink**: A link picker for referencing internal assets within Squiz Matrix.
-- **FormattedText**: Rich text-entry fields supporting limited HTML-like formatting (**no custom fields use this at present**).
+### Field Types:
+- **SquizImage**: Allows users to select an image from the asset library.
+- **SquizLink**: Allows users to add a link to an internal video asset.
+- **FormattedText** (not directly included): Custom text editor for adding formatted content.
 
 ---
 
 ## Conditional Logic
-
-- If `mediaType` is set to `"video"`, the `videoSource` field becomes required and must reference an internal video asset.
-- If `mediaType` is set to `"image"`, the `image` field becomes required, allowing selection of an image.
-- If `mediaType` is `"none"`, no additional fields are required.
+- If `mediaType` is set to `video`, the `videoSource` field becomes required, allowing users to specify an internal video asset.
+- If `mediaType` is set to `image`, the `image` field becomes required to select an asset.
+- If `mediaType` is `none`, no additional fields are needed.
 
 ---
 
-## Previews
+## Component Variations
+- **Default**: Displays a banner with a heading and no background media.
+- **Video Preview**: Demonstrates the banner configuration with a video as the background.
 
-The component supports multiple named previews for developers and content editors:
-- **Default Preview**: Uses example content with no background media.
-- **Video Preview**: Demonstrates the component with a sample video file as the background.
-
-These previews allow stakeholders to visualize the component in different contexts and configurations.
+These variations are available in the Squiz preview environment for testing and design purposes.
+```
