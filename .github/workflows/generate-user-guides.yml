@@ -14,6 +14,9 @@ name: Generate Component User Guides
 #   • Manually via "Run workflow": pass a component folder name (e.g. hh-card), a comma list, or leave it
 #     blank to regenerate ALL components.
 # The guide commit carries [skip ci] and only touches docs/, so it never re-triggers this workflow.
+#
+# Additionally this workflow can fetch external design guidance and open a PR with the converted content.
+# The fetch runs on a weekly schedule and can be triggered manually via the workflow_dispatch input.
 on:
   push:
     branches:
@@ -26,6 +29,12 @@ on:
         description: "Component folder name to generate a guide for (e.g. hh-card). Comma-separate for several. Leave blank to generate guides for ALL components."
         required: false
         default: ""
+      fetch_sa_design:
+        description: "If true, also fetch https://www.sa.gov.au/editors/design/elements and open a PR with the converted markdown."
+        required: false
+        default: "false"
+  schedule:
+    - cron: '0 3 * * 1' # Weekly on Monday at 03:00 UTC
 
 permissions:
   contents: write
@@ -148,3 +157,42 @@ jobs:
             git commit -m "docs: generate component user guide(s) [skip ci]"
             git push origin "HEAD:$BRANCH"
           fi
+
+  # ── Fetch SA design guidance and open a PR with converted markdown ───────────────────────────────
+  fetch-sa-design:
+    # run on manual dispatch when requested, scheduled runs, or when workflow_dispatch input requested
+    if: ${{ github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' && (inputs.fetch_sa_design == 'true') }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Fetch SA design page and convert to markdown
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          MODELS_MODEL: ${{ vars.MODELS_MODEL || 'claude-opus-4-8' }}
+          OPENAI_MODEL: ${{ vars.OPENAI_MODEL || 'gpt-4o-mini' }}
+        run: node scripts/user-guide-scripts/fetch-sa-design.mjs
+
+      - name: Create or update pull request with generated guide
+        uses: peter-evans/create-pull-request@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "docs: update SA design elements guide (automated)"
+          branch: "auto/docs/sa-design-update-${{ github.run_id }}"
+          title: "Automated: Update SA design elements guide"
+          body: |-
+            This PR contains a generated markdown version of https://www.sa.gov.au/editors/design/elements
+            generated on ${{ github.run_id }} by the repository automation. Please review and edit as needed.
+          labels: automated, docs
