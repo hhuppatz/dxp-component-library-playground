@@ -9,7 +9,7 @@ export default {
     // Generate a unique ID for each banner instance to ensure unique element IDs - this allow to put as many of them as needed.
     const uniqueId = `banner-${Math.floor(Math.random() * 9999)}`;
 
-    let mediaElement = '';
+    let mediaElement = ''; 
 
     // If a video source is provided, create a video element.
     if (mediaType === 'video') {

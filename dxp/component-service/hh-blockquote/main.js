@@ -12,7 +12,7 @@ export default {
         ${title
           ? `<h2 data-sq-field="title" class="heading-secondary">${xssSafeContent(title)}</h2>`
           : ''}
-
+ 
         <blockquote class="blockquote">
           <div data-sq-field="quote" class="blockquote__content">
             ${xssSafeContent(quote)}

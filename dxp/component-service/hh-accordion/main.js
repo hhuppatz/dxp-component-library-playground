@@ -22,7 +22,7 @@ export default {
                 <summary
                   data-sq-field="accordion[${idx}].heading"
                   class="accordion__heading"
-                >
+                > 
                   ${xssSafeContent(item.heading)}
                 </summary>
                 <div

@@ -16,7 +16,7 @@ export default {
         class="card--single cards__card${hasImage
           ? ' cards__card--has-image'
           : ''}"
-      >
+      > 
         <a
           href="${link?.url || '#'}"
           target="${target}"
