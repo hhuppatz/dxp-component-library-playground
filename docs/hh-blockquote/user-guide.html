@@ -13,7 +13,7 @@
 <div class="max-w-screen-xl mx-auto px-4 pt-10">
   <p class="text-xs font-semibold uppercase tracking-widest text-blue-600 mb-2">Component guide</p>
   <h1 class="text-4xl font-extrabold tracking-tight text-gray-900">HH - Block Quote</h1>
-  <p data-ucx-prose="overview" class="text-lg text-gray-500 mt-3 max-w-2xl">Displays a quote with the author's name.</p>
+  <p data-ucx-prose="overview" class="text-lg text-gray-500 mt-3 max-w-2xl">Show a standout quote alongside the person who said it.</p>
   <div class="mt-4 flex flex-wrap items-center gap-x-3 gap-y-2 text-xs text-gray-400">
     <code class="bg-gray-100 px-1.5 py-0.5 rounded text-gray-600">hh-blockquote</code>
     <span class="text-gray-300">·</span><span>v1.0.0</span>
@@ -61,7 +61,7 @@
                 <span class="inline-flex items-center whitespace-nowrap rounded-full px-2 py-0.5 text-xs font-medium bg-yellow-100 text-yellow-800">Optional</span>
                 <span class="inline-flex items-center whitespace-nowrap rounded-full px-2 py-0.5 text-xs font-medium bg-sky-100 text-sky-800">Editable text</span>
               </div>
-              <p data-ucx-prose="field:title" class="text-sm text-gray-500 mb-3">The title displayed above the quote.</p>
+              <p data-ucx-prose="field:title" class="text-sm text-gray-500 mb-3">Add a short heading above the quote to set the scene.</p>
               <table class="w-full table-fixed text-xs text-left text-gray-600 border-collapse">
                 <thead><tr class="text-gray-400 uppercase tracking-wide"><th class="pb-1 font-semibold pr-6 w-2/5">Property</th><th class="pb-1 font-semibold pr-6 w-1/5">Type</th><th class="pb-1 font-semibold">Notes</th></tr></thead>
                 <tbody class="divide-y divide-gray-50">
@@ -81,7 +81,7 @@
                 <span class="inline-flex items-center whitespace-nowrap rounded-full px-2 py-0.5 text-xs font-medium bg-yellow-100 text-yellow-800">Optional</span>
                 <span class="inline-flex items-center whitespace-nowrap rounded-full px-2 py-0.5 text-xs font-medium bg-sky-100 text-sky-800">Editable text</span>
               </div>
-              <p data-ucx-prose="field:author" class="text-sm text-gray-500 mb-3">The name of the quote's author.</p>
+              <p data-ucx-prose="field:author" class="text-sm text-gray-500 mb-3">Name the person who said the quote so readers know the source.</p>
               <table class="w-full table-fixed text-xs text-left text-gray-600 border-collapse">
                 <thead><tr class="text-gray-400 uppercase tracking-wide"><th class="pb-1 font-semibold pr-6 w-2/5">Property</th><th class="pb-1 font-semibold pr-6 w-1/5">Type</th><th class="pb-1 font-semibold">Notes</th></tr></thead>
                 <tbody class="divide-y divide-gray-50">
@@ -101,7 +101,7 @@
                 <span class="inline-flex items-center whitespace-nowrap rounded-full px-2 py-0.5 text-xs font-medium bg-yellow-100 text-yellow-800">Optional</span>
                 <span class="inline-flex items-center whitespace-nowrap rounded-full px-2 py-0.5 text-xs font-medium bg-sky-100 text-sky-800">Editable text</span>
               </div>
-              <p data-ucx-prose="field:favouriteCoffee" class="text-sm text-gray-500 mb-3">The user's favourite coffee.</p>
+              <p data-ucx-prose="field:favouriteCoffee" class="text-sm text-gray-500 mb-3">Share the author's favourite coffee for a fun, personal touch.</p>
               <table class="w-full table-fixed text-xs text-left text-gray-600 border-collapse">
                 <thead><tr class="text-gray-400 uppercase tracking-wide"><th class="pb-1 font-semibold pr-6 w-2/5">Property</th><th class="pb-1 font-semibold pr-6 w-1/5">Type</th><th class="pb-1 font-semibold">Notes</th></tr></thead>
                 <tbody class="divide-y divide-gray-50">
@@ -121,7 +121,7 @@
                 <span class="inline-flex items-center whitespace-nowrap rounded-full px-2 py-0.5 text-xs font-medium bg-green-100 text-green-800">Required</span>
                 <span class="inline-flex items-center whitespace-nowrap rounded-full px-2 py-0.5 text-xs font-medium bg-sky-100 text-sky-800">Editable text</span>
               </div>
-              <p data-ucx-prose="field:quote" class="text-sm text-gray-500 mb-3">The text of the quote.</p>
+              <p data-ucx-prose="field:quote" class="text-sm text-gray-500 mb-3">Type the quote you want to feature in the spotlight.</p>
               <table class="w-full table-fixed text-xs text-left text-gray-600 border-collapse">
                 <thead><tr class="text-gray-400 uppercase tracking-wide"><th class="pb-1 font-semibold pr-6 w-2/5">Property</th><th class="pb-1 font-semibold pr-6 w-1/5">Type</th><th class="pb-1 font-semibold">Notes</th></tr></thead>
                 <tbody class="divide-y divide-gray-50">
@@ -147,7 +147,197 @@
   <p class="text-base text-gray-500 mt-2">Here are some variations of the HH - Block Quote component, each showing a different visible change.</p>
   <div class="mt-6">
   <!-- ucx:variants -->
-<p class="text-base text-gray-500">Variant examples are added by the guide workflow.</p>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+  <div>
+      <p class="text-xs font-semibold text-gray-500 mb-2">No title</p>
+      <div class="rounded-lg border border-gray-200 bg-white shadow-sm overflow-hidden">
+<!-- ucx:render component="hh-blockquote" role="variant" id="v1" label="No title" -->
+<!-- ucx:data
+{
+  "quote": "<p>Separated they live in  Bookmarksgrove right at the coast of the Semantics, a large language  ocean. A small river named Duden flows by their place and supplies it  with the necessary regelialia. It is a paradisematic country, in which  roaste.</p>",
+  "author": "Aristotle",
+  "favouriteCoffee": "Cuppa joe"
+}
+-->
+<section class="blockquote-section">
+        <!-- Conditionally render title of the section -->
+        
+
+        <blockquote class="blockquote">
+          <div data-sq-field="quote" class="blockquote__content">
+            <p>Separated they live in  Bookmarksgrove right at the coast of the Semantics, a large language  ocean. A small river named Duden flows by their place and supplies it  with the necessary regelialia. It is a paradisematic country, in which  roaste.</p>
+
+            <!-- The "author" property is optional, so use conditional rendering to avoid displaying "undefined" when the author is not provided. -->
+
+            <cite data-sq-field="author" class="blockquote__author">Aristotle</cite>
+              
+            <p data-sq-field="favouriteCoffee" class="blockquote__favouriteCoffee">Cuppa joe</p>
+          </div>
+        </blockquote>
+      </section>
+<!-- /ucx:render -->
+      </div>
+      <p class="text-xs text-gray-400 mt-2">Hides the heading so the quote leads on its own.</p>
+    </div>
+  <div>
+      <p class="text-xs font-semibold text-gray-500 mb-2">No author</p>
+      <div class="rounded-lg border border-gray-200 bg-white shadow-sm overflow-hidden">
+<!-- ucx:render component="hh-blockquote" role="variant" id="v2" label="No author" -->
+<!-- ucx:data
+{
+  "title": "Blockquote component",
+  "quote": "<p>Separated they live in  Bookmarksgrove right at the coast of the Semantics, a large language  ocean. A small river named Duden flows by their place and supplies it  with the necessary regelialia. It is a paradisematic country, in which  roaste.</p>",
+  "favouriteCoffee": "Cuppa joe"
+}
+-->
+<section class="blockquote-section">
+        <!-- Conditionally render title of the section -->
+        <h2 data-sq-field="title" class="heading-secondary">Blockquote component</h2>
+
+        <blockquote class="blockquote">
+          <div data-sq-field="quote" class="blockquote__content">
+            <p>Separated they live in  Bookmarksgrove right at the coast of the Semantics, a large language  ocean. A small river named Duden flows by their place and supplies it  with the necessary regelialia. It is a paradisematic country, in which  roaste.</p>
+
+            <!-- The "author" property is optional, so use conditional rendering to avoid displaying "undefined" when the author is not provided. -->
+
+            
+              
+            <p data-sq-field="favouriteCoffee" class="blockquote__favouriteCoffee">Cuppa joe</p>
+          </div>
+        </blockquote>
+      </section>
+<!-- /ucx:render -->
+      </div>
+      <p class="text-xs text-gray-400 mt-2">Removes the author name, leaving just the quote.</p>
+    </div>
+  <div>
+      <p class="text-xs font-semibold text-gray-500 mb-2">Hide coffee</p>
+      <div class="rounded-lg border border-gray-200 bg-white shadow-sm overflow-hidden">
+<!-- ucx:render component="hh-blockquote" role="variant" id="v3" label="Hide coffee" -->
+<!-- ucx:data
+{
+  "title": "Blockquote component",
+  "quote": "<p>Separated they live in  Bookmarksgrove right at the coast of the Semantics, a large language  ocean. A small river named Duden flows by their place and supplies it  with the necessary regelialia. It is a paradisematic country, in which  roaste.</p>",
+  "author": "Aristotle"
+}
+-->
+<section class="blockquote-section">
+        <!-- Conditionally render title of the section -->
+        <h2 data-sq-field="title" class="heading-secondary">Blockquote component</h2>
+
+        <blockquote class="blockquote">
+          <div data-sq-field="quote" class="blockquote__content">
+            <p>Separated they live in  Bookmarksgrove right at the coast of the Semantics, a large language  ocean. A small river named Duden flows by their place and supplies it  with the necessary regelialia. It is a paradisematic country, in which  roaste.</p>
+
+            <!-- The "author" property is optional, so use conditional rendering to avoid displaying "undefined" when the author is not provided. -->
+
+            <cite data-sq-field="author" class="blockquote__author">Aristotle</cite>
+              
+            
+          </div>
+        </blockquote>
+      </section>
+<!-- /ucx:render -->
+      </div>
+      <p class="text-xs text-gray-400 mt-2">Removes the favourite coffee detail for a cleaner look.</p>
+    </div>
+  <div>
+      <p class="text-xs font-semibold text-gray-500 mb-2">Different author</p>
+      <div class="rounded-lg border border-gray-200 bg-white shadow-sm overflow-hidden">
+<!-- ucx:render component="hh-blockquote" role="variant" id="v4" label="Different author" -->
+<!-- ucx:data
+{
+  "title": "Blockquote component",
+  "quote": "<p>Separated they live in  Bookmarksgrove right at the coast of the Semantics, a large language  ocean. A small river named Duden flows by their place and supplies it  with the necessary regelialia. It is a paradisematic country, in which  roaste.</p>",
+  "author": "Maya Angelou",
+  "favouriteCoffee": "Cuppa joe"
+}
+-->
+<section class="blockquote-section">
+        <!-- Conditionally render title of the section -->
+        <h2 data-sq-field="title" class="heading-secondary">Blockquote component</h2>
+
+        <blockquote class="blockquote">
+          <div data-sq-field="quote" class="blockquote__content">
+            <p>Separated they live in  Bookmarksgrove right at the coast of the Semantics, a large language  ocean. A small river named Duden flows by their place and supplies it  with the necessary regelialia. It is a paradisematic country, in which  roaste.</p>
+
+            <!-- The "author" property is optional, so use conditional rendering to avoid displaying "undefined" when the author is not provided. -->
+
+            <cite data-sq-field="author" class="blockquote__author">Maya Angelou</cite>
+              
+            <p data-sq-field="favouriteCoffee" class="blockquote__favouriteCoffee">Cuppa joe</p>
+          </div>
+        </blockquote>
+      </section>
+<!-- /ucx:render -->
+      </div>
+      <p class="text-xs text-gray-400 mt-2">Shows a new author name under the quote.</p>
+    </div>
+  <div>
+      <p class="text-xs font-semibold text-gray-500 mb-2">Custom title</p>
+      <div class="rounded-lg border border-gray-200 bg-white shadow-sm overflow-hidden">
+<!-- ucx:render component="hh-blockquote" role="variant" id="v5" label="Custom title" -->
+<!-- ucx:data
+{
+  "title": "Words to remember",
+  "quote": "<p>Separated they live in  Bookmarksgrove right at the coast of the Semantics, a large language  ocean. A small river named Duden flows by their place and supplies it  with the necessary regelialia. It is a paradisematic country, in which  roaste.</p>",
+  "author": "Aristotle",
+  "favouriteCoffee": "Cuppa joe"
+}
+-->
+<section class="blockquote-section">
+        <!-- Conditionally render title of the section -->
+        <h2 data-sq-field="title" class="heading-secondary">Words to remember</h2>
+
+        <blockquote class="blockquote">
+          <div data-sq-field="quote" class="blockquote__content">
+            <p>Separated they live in  Bookmarksgrove right at the coast of the Semantics, a large language  ocean. A small river named Duden flows by their place and supplies it  with the necessary regelialia. It is a paradisematic country, in which  roaste.</p>
+
+            <!-- The "author" property is optional, so use conditional rendering to avoid displaying "undefined" when the author is not provided. -->
+
+            <cite data-sq-field="author" class="blockquote__author">Aristotle</cite>
+              
+            <p data-sq-field="favouriteCoffee" class="blockquote__favouriteCoffee">Cuppa joe</p>
+          </div>
+        </blockquote>
+      </section>
+<!-- /ucx:render -->
+      </div>
+      <p class="text-xs text-gray-400 mt-2">Displays a fresh heading above the quote.</p>
+    </div>
+  <div>
+      <p class="text-xs font-semibold text-gray-500 mb-2">New coffee</p>
+      <div class="rounded-lg border border-gray-200 bg-white shadow-sm overflow-hidden">
+<!-- ucx:render component="hh-blockquote" role="variant" id="v6" label="New coffee" -->
+<!-- ucx:data
+{
+  "title": "Blockquote component",
+  "quote": "<p>Separated they live in  Bookmarksgrove right at the coast of the Semantics, a large language  ocean. A small river named Duden flows by their place and supplies it  with the necessary regelialia. It is a paradisematic country, in which  roaste.</p>",
+  "author": "Aristotle",
+  "favouriteCoffee": "Flat white"
+}
+-->
+<section class="blockquote-section">
+        <!-- Conditionally render title of the section -->
+        <h2 data-sq-field="title" class="heading-secondary">Blockquote component</h2>
+
+        <blockquote class="blockquote">
+          <div data-sq-field="quote" class="blockquote__content">
+            <p>Separated they live in  Bookmarksgrove right at the coast of the Semantics, a large language  ocean. A small river named Duden flows by their place and supplies it  with the necessary regelialia. It is a paradisematic country, in which  roaste.</p>
+
+            <!-- The "author" property is optional, so use conditional rendering to avoid displaying "undefined" when the author is not provided. -->
+
+            <cite data-sq-field="author" class="blockquote__author">Aristotle</cite>
+              
+            <p data-sq-field="favouriteCoffee" class="blockquote__favouriteCoffee">Flat white</p>
+          </div>
+        </blockquote>
+      </section>
+<!-- /ucx:render -->
+      </div>
+      <p class="text-xs text-gray-400 mt-2">Updates the favourite coffee to a different drink.</p>
+    </div>
+  </div>
 <!-- /ucx:variants -->
   </div>
   <h2 class="text-2xl font-bold text-gray-900 mt-16">Add the component to your page</h2>

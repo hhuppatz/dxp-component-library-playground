@@ -13,7 +13,7 @@
 <div class="max-w-screen-xl mx-auto px-4 pt-10">
   <p class="text-xs font-semibold uppercase tracking-widest text-blue-600 mb-2">Component guide</p>
   <h1 class="text-4xl font-extrabold tracking-tight text-gray-900">HH - Banner</h1>
-  <p data-ucx-prose="overview" class="text-lg text-gray-500 mt-3 max-w-2xl">Displays a background media element such as a video, image, or a flat background color.</p>
+  <p data-ucx-prose="overview" class="text-lg text-gray-500 mt-3 max-w-2xl">This banner shows a video, image, or plain color behind your heading.</p>
   <div class="mt-4 flex flex-wrap items-center gap-x-3 gap-y-2 text-xs text-gray-400">
     <code class="bg-gray-100 px-1.5 py-0.5 rounded text-gray-600">hh-banner</code>
     <span class="text-gray-300">·</span><span>v1.0.0</span>
@@ -72,7 +72,7 @@
                 <span class="inline-flex items-center whitespace-nowrap rounded-full px-2 py-0.5 text-xs font-medium bg-green-100 text-green-800">Required</span>
                 <span class="inline-flex items-center whitespace-nowrap rounded-full px-2 py-0.5 text-xs font-medium bg-sky-100 text-sky-800">Editable text</span>
               </div>
-              <p data-ucx-prose="field:heading" class="text-sm text-gray-500 mb-3">Enter text for the main heading.</p>
+              <p data-ucx-prose="field:heading" class="text-sm text-gray-500 mb-3">Type the main text you want people to see on the banner.</p>
               <table class="w-full table-fixed text-xs text-left text-gray-600 border-collapse">
                 <thead><tr class="text-gray-400 uppercase tracking-wide"><th class="pb-1 font-semibold pr-6 w-2/5">Property</th><th class="pb-1 font-semibold pr-6 w-1/5">Type</th><th class="pb-1 font-semibold">Notes</th></tr></thead>
                 <tbody class="divide-y divide-gray-50">
@@ -106,7 +106,51 @@
   <p class="text-base text-gray-500 mt-2">Here are some variations of the HH - Banner component, each showing a different visible change.</p>
   <div class="mt-6">
   <!-- ucx:variants -->
-<p class="text-base text-gray-500">Variant examples are added by the guide workflow.</p>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+  <div>
+      <p class="text-xs font-semibold text-gray-500 mb-2">No Media</p>
+      <div class="rounded-lg border border-gray-200 bg-white shadow-sm overflow-hidden">
+<!-- ucx:render component="hh-banner" role="variant" id="v1" label="No Media" -->
+<!-- ucx:data
+{
+  "mediaType": "none",
+  "heading": "Welcome to All Components Page",
+  "image": {
+    "name": "My Image",
+    "alt": "This is the image alt text",
+    "imageVariations": {
+      "original": {
+        "url": "https://picsum.photos/800/600",
+        "width": 1500,
+        "height": 500,
+        "byteSize": 1000,
+        "mimeType": "image/jpeg",
+        "aspectRatio": "1:1",
+        "sha1Hash": "1234567890abcdef1234567890abcdef12345678"
+      }
+    }
+  }
+}
+-->
+<section class="banner" id="v1-banner-1234">
+        <!-- In the mediaElement will be displayed video, image or simple background, depending on what editor user pass -->
+
+        <div class="banner__background--default"></div>
+        <div class="banner__content">
+          <h1 data-sq-field="heading" class="banner__title">
+            Welcome to All Components Page
+          </h1>
+        </div>
+
+        <!-- Additional buttons for play or pause - only for video -->
+
+        
+      </section>
+<!-- /ucx:render -->
+      </div>
+      <p class="text-xs text-gray-400 mt-2">Uses a flat background color with no photo or video.</p>
+    </div>
+  </div>
 <!-- /ucx:variants -->
   </div>
   <h2 class="text-2xl font-bold text-gray-900 mt-16">Add the component to your page</h2>

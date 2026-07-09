@@ -13,7 +13,7 @@
 <div class="max-w-screen-xl mx-auto px-4 pt-10">
   <p class="text-xs font-semibold uppercase tracking-widest text-blue-600 mb-2">Component guide</p>
   <h1 class="text-4xl font-extrabold tracking-tight text-gray-900">HH - Accordion</h1>
-  <p data-ucx-prose="overview" class="text-lg text-gray-500 mt-3 max-w-2xl">Displays a list of headings with hidden related content that users can reveal by clicking.</p>
+  <p data-ucx-prose="overview" class="text-lg text-gray-500 mt-3 max-w-2xl">Show a list of headings that open to reveal more content when clicked.</p>
   <div class="mt-4 flex flex-wrap items-center gap-x-3 gap-y-2 text-xs text-gray-400">
     <code class="bg-gray-100 px-1.5 py-0.5 rounded text-gray-600">hh-accordion</code>
     <span class="text-gray-300">·</span><span>v1.0.0</span>
@@ -109,7 +109,7 @@
                 <span class="inline-flex items-center whitespace-nowrap rounded-full px-2 py-0.5 text-xs font-medium bg-yellow-100 text-yellow-800">Optional</span>
                 <span class="inline-flex items-center whitespace-nowrap rounded-full px-2 py-0.5 text-xs font-medium bg-sky-100 text-sky-800">Editable text</span>
               </div>
-              <p data-ucx-prose="field:title" class="text-sm text-gray-500 mb-3">The title to be displayed above the component.</p>
+              <p data-ucx-prose="field:title" class="text-sm text-gray-500 mb-3">Add a heading that sits above the whole accordion.</p>
               <table class="w-full table-fixed text-xs text-left text-gray-600 border-collapse">
                 <thead><tr class="text-gray-400 uppercase tracking-wide"><th class="pb-1 font-semibold pr-6 w-2/5">Property</th><th class="pb-1 font-semibold pr-6 w-1/5">Type</th><th class="pb-1 font-semibold">Notes</th></tr></thead>
                 <tbody class="divide-y divide-gray-50">
@@ -129,7 +129,7 @@
                 <span class="inline-flex items-center whitespace-nowrap rounded-full px-2 py-0.5 text-xs font-medium bg-green-100 text-green-800">Required</span>
                 <span class="inline-flex items-center whitespace-nowrap rounded-full px-2 py-0.5 text-xs font-medium bg-sky-100 text-sky-800">Editable text</span>
               </div>
-              <p data-ucx-prose="field:accordion[].heading" class="text-sm text-gray-500 mb-3">The heading of the accordion item.</p>
+              <p data-ucx-prose="field:accordion[].heading" class="text-sm text-gray-500 mb-3">Write the short label people click to open each section.</p>
               <table class="w-full table-fixed text-xs text-left text-gray-600 border-collapse">
                 <thead><tr class="text-gray-400 uppercase tracking-wide"><th class="pb-1 font-semibold pr-6 w-2/5">Property</th><th class="pb-1 font-semibold pr-6 w-1/5">Type</th><th class="pb-1 font-semibold">Notes</th></tr></thead>
                 <tbody class="divide-y divide-gray-50">
@@ -149,7 +149,7 @@
                 <span class="inline-flex items-center whitespace-nowrap rounded-full px-2 py-0.5 text-xs font-medium bg-green-100 text-green-800">Required</span>
                 <span class="inline-flex items-center whitespace-nowrap rounded-full px-2 py-0.5 text-xs font-medium bg-sky-100 text-sky-800">Editable text</span>
               </div>
-              <p data-ucx-prose="field:accordion[].content" class="text-sm text-gray-500 mb-3">The text that appears inside the accordion panel, hidden until the item is expanded.</p>
+              <p data-ucx-prose="field:accordion[].content" class="text-sm text-gray-500 mb-3">Add the text that appears when a section is opened.</p>
               <table class="w-full table-fixed text-xs text-left text-gray-600 border-collapse">
                 <thead><tr class="text-gray-400 uppercase tracking-wide"><th class="pb-1 font-semibold pr-6 w-2/5">Property</th><th class="pb-1 font-semibold pr-6 w-1/5">Type</th><th class="pb-1 font-semibold">Notes</th></tr></thead>
                 <tbody class="divide-y divide-gray-50">
@@ -175,7 +175,167 @@
   <p class="text-base text-gray-500 mt-2">Here are some variations of the HH - Accordion component, each showing a different visible change.</p>
   <div class="mt-6">
   <!-- ucx:variants -->
-<p class="text-base text-gray-500">Variant examples are added by the guide workflow.</p>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+  <div>
+      <p class="text-xs font-semibold text-gray-500 mb-2">With title</p>
+      <div class="rounded-lg border border-gray-200 bg-white shadow-sm overflow-hidden">
+<!-- ucx:render component="hh-accordion" role="variant" id="v1" label="With title" -->
+<!-- ucx:data
+{
+  "title": "Frequently asked questions",
+  "accordion": [
+    {
+      "heading": "Accordion One",
+      "content": "<p>This is accordion one!</p>"
+    },
+    {
+      "heading": "Accordion Two",
+      "content": "<p>This is accordion two!</p>"
+    },
+    {
+      "heading": "Accordion Three",
+      "content": "<p>An exploration of contemporary themes through the lens of modern art, featuring innovative works that challenge traditional boundaries and invite viewers to see the world in new ways.  </p><p>An exploration of contemporary themes through the lens of modern art, featuring innovative works that challenge traditional boundaries and invite viewers to see the world in new ways.  An exploration of contemporary themes through the lens of modern art, featuring innovative works that challenge traditional boundaries and invite viewers to see the world in new ways.  </p>"
+    }
+  ]
+}
+-->
+<section class="accordion">
+        <!-- Conditionally render title of the section -->
+        <h2 data-sq-field="title" class="heading-secondary">Frequently asked questions</h2>
+
+        <!-- We loop through the "accordion" array to create each accordion. The "accordion" array is expected to contain items, each with a "heading" and "content" property. -->
+        <!-- Use the details and summary tags for an accessible accordion -->
+        
+              <details class="accordion__item">
+                <summary
+                  data-sq-field="accordion[0].heading"
+                  class="accordion__heading"
+                >
+                  Accordion One
+                </summary>
+                <div
+                  data-sq-field="accordion[0].content"
+                  class="accordion__content"
+                >
+                  <p>This is accordion one!</p>
+                </div>
+              </details>
+            
+              <details class="accordion__item">
+                <summary
+                  data-sq-field="accordion[1].heading"
+                  class="accordion__heading"
+                >
+                  Accordion Two
+                </summary>
+                <div
+                  data-sq-field="accordion[1].content"
+                  class="accordion__content"
+                >
+                  <p>This is accordion two!</p>
+                </div>
+              </details>
+            
+              <details class="accordion__item">
+                <summary
+                  data-sq-field="accordion[2].heading"
+                  class="accordion__heading"
+                >
+                  Accordion Three
+                </summary>
+                <div
+                  data-sq-field="accordion[2].content"
+                  class="accordion__content"
+                >
+                  <p>An exploration of contemporary themes through the lens of modern art, featuring innovative works that challenge traditional boundaries and invite viewers to see the world in new ways.  </p><p>An exploration of contemporary themes through the lens of modern art, featuring innovative works that challenge traditional boundaries and invite viewers to see the world in new ways.  An exploration of contemporary themes through the lens of modern art, featuring innovative works that challenge traditional boundaries and invite viewers to see the world in new ways.  </p>
+                </div>
+              </details>
+            
+      </section>
+<!-- /ucx:render -->
+      </div>
+      <p class="text-xs text-gray-400 mt-2">Shows a heading above the accordion list.</p>
+    </div>
+  <div>
+      <p class="text-xs font-semibold text-gray-500 mb-2">No title</p>
+      <div class="rounded-lg border border-gray-200 bg-white shadow-sm overflow-hidden">
+<!-- ucx:render component="hh-accordion" role="variant" id="v2" label="No title" -->
+<!-- ucx:data
+{
+  "accordion": [
+    {
+      "heading": "Accordion One",
+      "content": "<p>This is accordion one!</p>"
+    },
+    {
+      "heading": "Accordion Two",
+      "content": "<p>This is accordion two!</p>"
+    },
+    {
+      "heading": "Accordion Three",
+      "content": "<p>An exploration of contemporary themes through the lens of modern art, featuring innovative works that challenge traditional boundaries and invite viewers to see the world in new ways.  </p><p>An exploration of contemporary themes through the lens of modern art, featuring innovative works that challenge traditional boundaries and invite viewers to see the world in new ways.  An exploration of contemporary themes through the lens of modern art, featuring innovative works that challenge traditional boundaries and invite viewers to see the world in new ways.  </p>"
+    }
+  ]
+}
+-->
+<section class="accordion">
+        <!-- Conditionally render title of the section -->
+        
+
+        <!-- We loop through the "accordion" array to create each accordion. The "accordion" array is expected to contain items, each with a "heading" and "content" property. -->
+        <!-- Use the details and summary tags for an accessible accordion -->
+        
+              <details class="accordion__item">
+                <summary
+                  data-sq-field="accordion[0].heading"
+                  class="accordion__heading"
+                >
+                  Accordion One
+                </summary>
+                <div
+                  data-sq-field="accordion[0].content"
+                  class="accordion__content"
+                >
+                  <p>This is accordion one!</p>
+                </div>
+              </details>
+            
+              <details class="accordion__item">
+                <summary
+                  data-sq-field="accordion[1].heading"
+                  class="accordion__heading"
+                >
+                  Accordion Two
+                </summary>
+                <div
+                  data-sq-field="accordion[1].content"
+                  class="accordion__content"
+                >
+                  <p>This is accordion two!</p>
+                </div>
+              </details>
+            
+              <details class="accordion__item">
+                <summary
+                  data-sq-field="accordion[2].heading"
+                  class="accordion__heading"
+                >
+                  Accordion Three
+                </summary>
+                <div
+                  data-sq-field="accordion[2].content"
+                  class="accordion__content"
+                >
+                  <p>An exploration of contemporary themes through the lens of modern art, featuring innovative works that challenge traditional boundaries and invite viewers to see the world in new ways.  </p><p>An exploration of contemporary themes through the lens of modern art, featuring innovative works that challenge traditional boundaries and invite viewers to see the world in new ways.  An exploration of contemporary themes through the lens of modern art, featuring innovative works that challenge traditional boundaries and invite viewers to see the world in new ways.  </p>
+                </div>
+              </details>
+            
+      </section>
+<!-- /ucx:render -->
+      </div>
+      <p class="text-xs text-gray-400 mt-2">Hides the heading so only the accordion list shows.</p>
+    </div>
+  </div>
 <!-- /ucx:variants -->
   </div>
   <h2 class="text-2xl font-bold text-gray-900 mt-16">Add the component to your page</h2>
