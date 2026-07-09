@@ -1,31 +1,29 @@
-name: Generate Component User Guides (HTML)
+name: Generate Component User Guides
 
-# The "real-markup" HTML user-guide pipeline (ported from the UltraCX repo):
-#   1. node scripts/user-guide-scripts/render-guides.mjs  — deterministically (no model) builds the page
-#      structure and renders the REAL component (imports its main.js and captures the returned HTML) into
-#      docs/<component>/user-guide.html.
-#   2. node scripts/user-guide-scripts/ci-guide-pass.mjs  — a model chooses VARIANT examples (functions
-#      render them) and rewrites the editor-friendly PROSE. Both are persisted in the page.
+# The "once-over" for component user guides:
+#   1. node scripts/user-guide-scripts/render-guides.mjs  — deterministically (no model) rebuilds the
+#      page structure and the real main-component render for docs/<component>/user-guide.html.
+#   2. node scripts/user-guide-scripts/ci-guide-pass.mjs  — a model chooses the VARIANT examples
+#      (functions render them) and rewrites the editor-friendly PROSE. Both are persisted in the page.
 # Commits the result to docs/<component>/user-guide.html on the branch it was run from.
 #
-# ⚠️ This repo ALSO has generate-component-docs.yml, which writes markdown docs/<component>/user-guide.md on
-#    push. Both trigger on push to dxp/component-service/** and both push to docs/, so they can race on
-#    `git push`. For isolated testing, run THIS one manually (Actions → Run workflow) with a component name,
-#    or temporarily disable the markdown workflow. Different file extensions (.html vs .md) mean no file clash.
-#
-# Runs in TWO ways:
-#   • Automatically on push when component source changes — regenerates ONLY the changed components.
-#   • Manually via "Run workflow": pass a component folder name (e.g. hh-card), a comma list, or leave blank
-#     to regenerate ALL components.
+# It runs in TWO ways:
+#   • Automatically on every push to main when component source changes. The `detect` job diffs the
+#     previous remote tip (github.event.before) against the pushed tip and regenerates ONLY the
+#     components a developer actually touched — nothing else is rebuilt or re-modelled.
+#   • Manually via "Run workflow": pass a component folder name (e.g. hh-card), a comma list, or leave it
+#     blank to regenerate ALL components.
 # The guide commit carries [skip ci] and only touches docs/, so it never re-triggers this workflow.
 on:
   push:
+    branches:
+      - main
     paths:
       - 'dxp/component-service/**'
   workflow_dispatch:
     inputs:
       component:
-        description: "Component folder name to generate a guide for (e.g. hh-card). Comma-separate for several. Leave blank for ALL components."
+        description: "Component folder name to generate a guide for (e.g. hh-card). Comma-separate for several. Leave blank to generate guides for ALL components."
         required: false
         default: ""
 
@@ -39,6 +37,9 @@ concurrency:
 
 jobs:
   # ── Work out which components to (re)generate ─────────────────────────────────────────────────────
+  # push  → the component folders changed between github.event.before and the pushed tip.
+  # manual → whatever was typed in the input ("" = all components).
+  # Emits `components` (comma-separated list, "" = all) and `count` ("0" = nothing to do → skip generate).
   detect:
     runs-on: ubuntu-latest
     outputs:
@@ -69,7 +70,8 @@ jobs:
           fi
 
           # Push run: diff the previous remote tip against the pushed tip. Fall back gracefully when the
-          # before-SHA is absent (new branch = all-zeros, or a force-push rewrote it away).
+          # before-SHA is absent (new branch = all-zeros, or a force-push rewrote it away): just diff the
+          # pushed tip commit, or the empty tree if it has no parent (very first commit on the repo).
           ZERO="0000000000000000000000000000000000000000"
           if [ "$BEFORE" = "$ZERO" ] || ! git cat-file -e "${BEFORE}^{commit}" 2>/dev/null; then
             if git rev-parse "${AFTER}^" >/dev/null 2>&1; then
@@ -82,6 +84,8 @@ jobs:
           fi
           echo "Diffing component sources: git diff --name-only $RANGE -- dxp/component-service"
 
+          # Map each changed file to its component folder (3rd path segment), de-dup, and keep only
+          # folders that still have a manifest.json (drops deletions and any stray non-component paths).
           CHANGED="$(git diff --name-only $RANGE -- dxp/component-service || true)"
           COMPONENTS="$(printf '%s\n' "$CHANGED" \
             | sed -n 's#^dxp/component-service/\([^/]*\)/.*#\1#p' \
@@ -116,7 +120,7 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Generate guide structure + real render (deterministic)
+      - name: Generate guide structure + main render (deterministic)
         env:
           COMPONENT: ${{ needs.detect.outputs.components }}
         run: node scripts/user-guide-scripts/render-guides.mjs
@@ -126,8 +130,8 @@ jobs:
           COMPONENT: ${{ needs.detect.outputs.components }}
           # Anthropic (Claude) API key — add it as a repo secret: Settings → Secrets and variables → Actions.
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-          # Claude model id. Override without a code change by setting a repo Actions variable MODELS_MODEL —
-          # e.g. 'claude-haiku-4-5' to cut cost for this small JSON job.
+          # Claude model id. Override without a code change by setting a repo Actions variable MODELS_MODEL
+          # (Settings → Secrets and variables → Actions → Variables) — e.g. 'claude-haiku-4-5' to cut cost.
           MODELS_MODEL: ${{ vars.MODELS_MODEL || 'claude-opus-4-8' }}
         run: node scripts/user-guide-scripts/ci-guide-pass.mjs
 
