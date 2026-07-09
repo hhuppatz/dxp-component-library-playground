@@ -381,19 +381,28 @@ export function overlayProse(html, existing) {
 }
 
 // ── Document shell ───────────────────────────────────────────────────────────────────────────────
+// Styling knobs (all optional — default output is a clean, self-contained clone with no external deps):
+//   GUIDE_TAILWIND_CDN=1  → load the Tailwind Play CDN so the guide CHROME (its cards/tables/badges,
+//                           written in Tailwind utility classes) renders. Needs internet at view time.
+//   GUIDE_THEME=<class>   → add a design-system theme class (e.g. green-theme) to <body> so the
+//                           theme-scoped component CSS (.green-theme .cards__card { … }) applies to the
+//                           rendered PREVIEW. Pair with COMPONENT_GUIDE_CSS (see readCompiledCss).
 export function buildDocument({ title, bodyHtml }) {
+  const tw = process.env.GUIDE_TAILWIND_CDN ? `\n<script src="https://cdn.tailwindcss.com"></script>` : "";
+  const theme = (process.env.GUIDE_THEME || "").trim();
+  const bodyClass = `antialiased bg-gray-50${theme ? ` ${theme}` : ""}`;
   return `<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>${esc(title)} — Component User Guide</title>
+<title>${esc(title)} — Component User Guide</title>${tw}
 <style>
 ${CSS_START}
 ${CSS_END}
 </style>
 </head>
-<body class="antialiased bg-gray-50">
+<body class="${bodyClass}">
 ${bodyHtml}
 <script src="${FLOWBITE_JS}"></script>
 <script>

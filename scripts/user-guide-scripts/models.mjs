@@ -11,7 +11,7 @@
 // Override the model per-run with MODELS_MODEL (e.g. "claude-haiku-4-5" to cut cost for this simple JSON job).
 // Override the endpoint with MODELS_ENDPOINT (must be Anthropic Messages-API compatible). Provide the key via
 // ANTHROPIC_API_KEY (or MODELS_TOKEN). For a no-token local dry run, ci-guide-pass.mjs supports MODELS_MOCK=1.
-const MODEL = process.env.MODELS_MODEL || "claude-opus-4-8";
+const MODEL = process.env.MODELS_MODEL || "claude-haiku-4-5";
 const ENDPOINT = process.env.MODELS_ENDPOINT || "https://api.anthropic.com/v1/messages";
 const API_VERSION = process.env.ANTHROPIC_VERSION || "2023-06-01";
 const TOKEN = process.env.ANTHROPIC_API_KEY || process.env.MODELS_TOKEN;

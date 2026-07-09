@@ -25,7 +25,8 @@
     "fix:all": "npm run lint:css:fix && npm run lint:js:fix && npm run prettier:fix",
     "guides:render": "node scripts/user-guide-scripts/render-guides.mjs",
     "guides:pass": "node scripts/user-guide-scripts/ci-guide-pass.mjs",
-    "guides:mock": "cross-env MODELS_MOCK=1 node scripts/user-guide-scripts/ci-guide-pass.mjs"
+    "guides:mock": "cross-env MODELS_MOCK=1 node scripts/user-guide-scripts/ci-guide-pass.mjs",
+    "guides:styled": "cross-env GUIDE_TAILWIND_CDN=1 GUIDE_THEME=green-theme COMPONENT_GUIDE_CSS=dist/main.css node scripts/user-guide-scripts/render-guides.mjs"
   },
   "devDependencies": {
     "@squiz/component-lib": "^1.7.0",
